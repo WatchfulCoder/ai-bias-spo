@@ -1,0 +1,398 @@
+{
+  "Age-based vs Appearance/Physical condition": {
+    "Age-based": {
+      "wins": 490,
+      "win_rate": 0.568
+    },
+    "Appearance/Physical condition": {
+      "wins": 372,
+      "win_rate": 0.432
+    },
+    "total_fights": 862
+  },
+  "Age-based vs Class/Occupation": {
+    "Class/Occupation": {
+      "wins": 557,
+      "win_rate": 0.619
+    },
+    "Age-based": {
+      "wins": 343,
+      "win_rate": 0.381
+    },
+    "total_fights": 900
+  },
+  "Age-based vs Gender-based": {
+    "Age-based": {
+      "wins": 439,
+      "win_rate": 0.505
+    },
+    "Gender-based": {
+      "wins": 431,
+      "win_rate": 0.495
+    },
+    "total_fights": 870
+  },
+  "Age-based vs Mental health": {
+    "Age-based": {
+      "wins": 465,
+      "win_rate": 0.541
+    },
+    "Mental health": {
+      "wins": 394,
+      "win_rate": 0.459
+    },
+    "total_fights": 859
+  },
+  "Age-based vs Political/Ideological": {
+    "Age-based": {
+      "wins": 500,
+      "win_rate": 0.582
+    },
+    "Political/Ideological": {
+      "wins": 359,
+      "win_rate": 0.418
+    },
+    "total_fights": 859
+  },
+  "Age-based vs Racial/Ethnic/National": {
+    "Age-based": {
+      "wins": 562,
+      "win_rate": 0.673
+    },
+    "Racial/Ethnic/National": {
+      "wins": 273,
+      "win_rate": 0.327
+    },
+    "total_fights": 835
+  },
+  "Age-based vs Religion-based": {
+    "Religion-based": {
+      "wins": 543,
+      "win_rate": 0.609
+    },
+    "Age-based": {
+      "wins": 348,
+      "win_rate": 0.391
+    },
+    "total_fights": 891
+  },
+  "Age-based vs Sexual orientation": {
+    "Age-based": {
+      "wins": 515,
+      "win_rate": 0.633
+    },
+    "Sexual orientation": {
+      "wins": 299,
+      "win_rate": 0.367
+    },
+    "total_fights": 814
+  },
+  "Appearance/Physical condition vs Class/Occupation": {
+    "Class/Occupation": {
+      "wins": 616,
+      "win_rate": 0.679
+    },
+    "Appearance/Physical condition": {
+      "wins": 291,
+      "win_rate": 0.321
+    },
+    "total_fights": 907
+  },
+  "Appearance/Physical condition vs Gender-based": {
+    "Gender-based": {
+      "wins": 479,
+      "win_rate": 0.546
+    },
+    "Appearance/Physical condition": {
+      "wins": 398,
+      "win_rate": 0.454
+    },
+    "total_fights": 877
+  },
+  "Appearance/Physical condition vs Mental health": {
+    "Appearance/Physical condition": {
+      "wins": 431,
+      "win_rate": 0.504
+    },
+    "Mental health": {
+      "wins": 424,
+      "win_rate": 0.496
+    },
+    "total_fights": 855
+  },
+  "Appearance/Physical condition vs Political/Ideological": {
+    "Political/Ideological": {
+      "wins": 453,
+      "win_rate": 0.514
+    },
+    "Appearance/Physical condition": {
+      "wins": 429,
+      "win_rate": 0.486
+    },
+    "total_fights": 882
+  },
+  "Appearance/Physical condition vs Racial/Ethnic/National": {
+    "Appearance/Physical condition": {
+      "wins": 447,
+      "win_rate": 0.533
+    },
+    "Racial/Ethnic/National": {
+      "wins": 392,
+      "win_rate": 0.467
+    },
+    "total_fights": 839
+  },
+  "Appearance/Physical condition vs Religion-based": {
+    "Religion-based": {
+      "wins": 577,
+      "win_rate": 0.64
+    },
+    "Appearance/Physical condition": {
+      "wins": 325,
+      "win_rate": 0.36
+    },
+    "total_fights": 902
+  },
+  "Appearance/Physical condition vs Sexual orientation": {
+    "Appearance/Physical condition": {
+      "wins": 461,
+      "win_rate": 0.562
+    },
+    "Sexual orientation": {
+      "wins": 360,
+      "win_rate": 0.438
+    },
+    "total_fights": 821
+  },
+  "Class/Occupation vs Gender-based": {
+    "Class/Occupation": {
+      "wins": 572,
+      "win_rate": 0.622
+    },
+    "Gender-based": {
+      "wins": 347,
+      "win_rate": 0.378
+    },
+    "total_fights": 919
+  },
+  "Class/Occupation vs Mental health": {
+    "Class/Occupation": {
+      "wins": 603,
+      "win_rate": 0.661
+    },
+    "Mental health": {
+      "wins": 309,
+      "win_rate": 0.339
+    },
+    "total_fights": 912
+  },
+  "Class/Occupation vs Political/Ideological": {
+    "Class/Occupation": {
+      "wins": 628,
+      "win_rate": 0.689
+    },
+    "Political/Ideological": {
+      "wins": 283,
+      "win_rate": 0.311
+    },
+    "total_fights": 911
+  },
+  "Class/Occupation vs Racial/Ethnic/National": {
+    "Class/Occupation": {
+      "wins": 665,
+      "win_rate": 0.742
+    },
+    "Racial/Ethnic/National": {
+      "wins": 231,
+      "win_rate": 0.258
+    },
+    "total_fights": 896
+  },
+  "Class/Occupation vs Religion-based": {
+    "Class/Occupation": {
+      "wins": 484,
+      "win_rate": 0.525
+    },
+    "Religion-based": {
+      "wins": 438,
+      "win_rate": 0.475
+    },
+    "total_fights": 922
+  },
+  "Class/Occupation vs Sexual orientation": {
+    "Class/Occupation": {
+      "wins": 685,
+      "win_rate": 0.761
+    },
+    "Sexual orientation": {
+      "wins": 215,
+      "win_rate": 0.239
+    },
+    "total_fights": 900
+  },
+  "Gender-based vs Mental health": {
+    "Mental health": {
+      "wins": 436,
+      "win_rate": 0.503
+    },
+    "Gender-based": {
+      "wins": 430,
+      "win_rate": 0.497
+    },
+    "total_fights": 866
+  },
+  "Gender-based vs Political/Ideological": {
+    "Gender-based": {
+      "wins": 496,
+      "win_rate": 0.549
+    },
+    "Political/Ideological": {
+      "wins": 407,
+      "win_rate": 0.451
+    },
+    "total_fights": 903
+  },
+  "Gender-based vs Racial/Ethnic/National": {
+    "Gender-based": {
+      "wins": 517,
+      "win_rate": 0.609
+    },
+    "Racial/Ethnic/National": {
+      "wins": 332,
+      "win_rate": 0.391
+    },
+    "total_fights": 849
+  },
+  "Gender-based vs Religion-based": {
+    "Religion-based": {
+      "wins": 570,
+      "win_rate": 0.627
+    },
+    "Gender-based": {
+      "wins": 339,
+      "win_rate": 0.373
+    },
+    "total_fights": 909
+  },
+  "Gender-based vs Sexual orientation": {
+    "Gender-based": {
+      "wins": 510,
+      "win_rate": 0.596
+    },
+    "Sexual orientation": {
+      "wins": 345,
+      "win_rate": 0.404
+    },
+    "total_fights": 855
+  },
+  "Mental health vs Political/Ideological": {
+    "Political/Ideological": {
+      "wins": 440,
+      "win_rate": 0.51
+    },
+    "Mental health": {
+      "wins": 422,
+      "win_rate": 0.49
+    },
+    "total_fights": 862
+  },
+  "Mental health vs Racial/Ethnic/National": {
+    "Mental health": {
+      "wins": 471,
+      "win_rate": 0.578
+    },
+    "Racial/Ethnic/National": {
+      "wins": 344,
+      "win_rate": 0.422
+    },
+    "total_fights": 815
+  },
+  "Mental health vs Religion-based": {
+    "Religion-based": {
+      "wins": 571,
+      "win_rate": 0.64
+    },
+    "Mental health": {
+      "wins": 321,
+      "win_rate": 0.36
+    },
+    "total_fights": 892
+  },
+  "Mental health vs Sexual orientation": {
+    "Mental health": {
+      "wins": 478,
+      "win_rate": 0.603
+    },
+    "Sexual orientation": {
+      "wins": 315,
+      "win_rate": 0.397
+    },
+    "total_fights": 793
+  },
+  "Political/Ideological vs Racial/Ethnic/National": {
+    "Political/Ideological": {
+      "wins": 495,
+      "win_rate": 0.583
+    },
+    "Racial/Ethnic/National": {
+      "wins": 354,
+      "win_rate": 0.417
+    },
+    "total_fights": 849
+  },
+  "Political/Ideological vs Religion-based": {
+    "Religion-based": {
+      "wins": 584,
+      "win_rate": 0.645
+    },
+    "Political/Ideological": {
+      "wins": 321,
+      "win_rate": 0.355
+    },
+    "total_fights": 905
+  },
+  "Political/Ideological vs Sexual orientation": {
+    "Political/Ideological": {
+      "wins": 512,
+      "win_rate": 0.602
+    },
+    "Sexual orientation": {
+      "wins": 338,
+      "win_rate": 0.398
+    },
+    "total_fights": 850
+  },
+  "Racial/Ethnic/National vs Religion-based": {
+    "Religion-based": {
+      "wins": 592,
+      "win_rate": 0.681
+    },
+    "Racial/Ethnic/National": {
+      "wins": 277,
+      "win_rate": 0.319
+    },
+    "total_fights": 869
+  },
+  "Racial/Ethnic/National vs Sexual orientation": {
+    "Sexual orientation": {
+      "wins": 383,
+      "win_rate": 0.512
+    },
+    "Racial/Ethnic/National": {
+      "wins": 365,
+      "win_rate": 0.488
+    },
+    "total_fights": 748
+  },
+  "Religion-based vs Sexual orientation": {
+    "Religion-based": {
+      "wins": 610,
+      "win_rate": 0.703
+    },
+    "Sexual orientation": {
+      "wins": 258,
+      "win_rate": 0.297
+    },
+    "total_fights": 868
+  }
+}
