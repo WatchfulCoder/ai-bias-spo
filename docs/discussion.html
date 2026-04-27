@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discussion — AI Bias in Humor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── Site nav ── -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
+      <div class="site-nav-links">
+        <a href="index.html">Home</a>
+        <a href="study.html">Study Design</a>
+        <a href="results.html">Results</a>
+        <a href="discussion.html" class="active">Discussion</a>
+        <a href="references.html">References</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Page 4 of 5</div>
+      <h1>Discussion &amp; Conclusion</h1>
+    </div>
+  </div>
+
+  <!-- ── Two-column body ── -->
+  <div class="page-body">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <ol>
+        <li><a href="#discussion">1. Discussion</a></li>
+        <li><a href="#limits">2. Limitations</a></li>
+        <li><a href="#conclusion">3. Conclusion</a></li>
+      </ol>
+      <a href="#" class="toc-top">↑ Back to top</a>
+    </aside>
+
+    <!-- Article -->
+    <article class="article">
+
+      <!-- ── Discussion ── -->
+      <section class="section" id="discussion">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <h2>Discussion</h2>
+        </div>
+
+        <div class="placeholder">
+          <span class="placeholder-icon">💬</span>
+          <strong>Placeholder — to be completed</strong>
+          This section will interpret the results in light of the three hypotheses and prior work.
+          Planned sub-sections:
+          <ul>
+            <li><strong>Why does Class/Occupation dominate?</strong> Hypothesis: this category often
+              relies on wordplay and structure (puns, reversals) rather than transgressive content,
+              making it safer for a safety-tuned model to reward. Alternatively, the training corpus
+              may over-represent this style.</li>
+            <li><strong>Why does Sexual Orientation lose?</strong> Hypothesis: safety alignment
+              (Constitutional AI, RLHF) suppresses content targeting LGBTQ+ groups — the model refuses
+              to "reward" it even in a comparative humor context. This represents a tension between
+              safety and evaluation neutrality.</li>
+            <li><strong>Recency bias as an attention artifact.</strong> Comparison with Zheng et al.
+              (2023); discussion of whether system-prompt priming or chain-of-thought could mitigate the effect.</li>
+            <li><strong>Implications for LLM-as-judge frameworks.</strong> Randomised position order
+              as a minimal mitigation; aggregation strategies; the case for multi-model juries.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── Limitations ── -->
+      <section class="section" id="limits">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <h2>Limitations</h2>
+        </div>
+
+        <ul class="limit-list">
+          <li>
+            <span class="icon">🤖</span>
+            <div>
+              <strong>Single model, single snapshot.</strong>
+              All judgments were made by one version of Claude Sonnet. Results may not generalise to
+              other LLMs (GPT-4o, Gemini, Llama 3) or to future releases of the same model after
+              further safety tuning.
+            </div>
+          </li>
+          <li>
+            <span class="icon">🏷️</span>
+            <div>
+              <strong>Annotation dependency.</strong>
+              Category labels were produced by Claude Haiku, creating a circular dependency: the same
+              model family annotates <em>and</em> judges. Label noise propagates into tournament results.
+              The five human-annotated validation samples provide partial coverage only.
+            </div>
+          </li>
+          <li>
+            <span class="icon">🌍</span>
+            <div>
+              <strong>Dataset scope and representativeness.</strong>
+              The Reddit joke corpus skews toward English-language, culturally Western humor, produced
+              by a non-representative internet population. Category proportions may not reflect
+              real-world distributions.
+            </div>
+          </li>
+          <li>
+            <span class="icon">🎭</span>
+            <div>
+              <strong>"Funniness" is underdefined.</strong>
+              The prompt asked for the "funniest" joke without defining funniness. The model's judgments
+              may conflate humor, harmlessness, and other latent criteria shaped by RLHF rather than
+              reflecting pure humor perception.
+            </div>
+          </li>
+          <li>
+            <span class="icon">🔬</span>
+            <div>
+              <strong>No causal mechanism.</strong>
+              We observe systematic preferences but cannot directly attribute them to specific causes
+              (training data, RLHF reward model, Constitutional AI) without targeted ablations
+              unavailable in a black-box API setting.
+            </div>
+          </li>
+          <li>
+            <span class="icon">📊</span>
+            <div>
+              <strong>Statistical power per cell.</strong>
+              With 154 jokes per side per matchup, some pairwise estimates carry wide confidence
+              intervals. Small within-matchup effects may remain underpowered.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ── Conclusion ── -->
+      <section class="section" id="conclusion">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <h2>Conclusion</h2>
+        </div>
+
+        <p>
+          We set out to ask whether a state-of-the-art language model judges humor fairly across social
+          categories. The answer is unambiguously no. Two systematic biases coexist: a <em>category bias</em>
+          (a 28-point spread from 66% to 38% win rate) and a <em>recency bias</em> (position-2 preferred
+          in 65% of fights). Crucially, these are not independent: strong categories partially resist
+          positional disadvantage, revealing a hierarchy of preferences that overrides low-level
+          attention artifacts.
+        </p>
+        <p>
+          Joke length is ruled out as a confound, and the effects are consistent and statistically robust
+          across 36 matchups and 80,000+ individual judgments.
+        </p>
+        <p>
+          The practical implication is that LLM-based evaluators should not be deployed as neutral arbiters
+          of creative content without explicit bias auditing. Tournament-style experiments — cheap to run
+          at scale with modern batch APIs — offer a tractable framework for such audits. Future work should
+          replicate these results across models and languages, investigate the safety-alignment origins of
+          category biases, and explore debiasing strategies such as position shuffling, multi-model juries,
+          and chain-of-thought elicitation.
+        </p>
+
+        <div class="callout">
+          <p>
+            <strong>Open science.</strong> All code, annotation prompts, and aggregated results are
+            available at
+            <a href="https://github.com/WatchfulCoder/ai-bias-spo"
+              target="_blank">github.com/WatchfulCoder/ai-bias-spo</a>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Prev / Next -->
+      <div class="page-nav">
+        <a href="results.html">
+          Previous page
+          <strong>← Results</strong>
+        </a>
+        <a href="references.html" class="next">
+          Next page
+          <strong>References →</strong>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <footer>
+    <p><strong>Does AI Have a Sense of Humor?</strong></p>
+    <p><span>Sciences Po Paris, EAP, Master 1</span>
+      <span class="sep">|</span>
+      <span>Decoding biases in Artificial Intelligence</span>
+      <span class="sep">|</span>
+      <span>April 2026</span>
+    </p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6">10,000 Reddit jokes · 36 matchups · ~80,000 pairwise
+      judgments · Claude Sonnet (Anthropic)</p>
+  </footer>
+
+  <script>
+    const tocLinks = document.querySelectorAll('.toc a');
+    const sections = document.querySelectorAll('.section[id]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+
+</html>

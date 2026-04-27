@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Design — AI Bias in Humor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── Site nav ── -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
+      <div class="site-nav-links">
+        <a href="index.html">Home</a>
+        <a href="study.html" class="active">Study Design</a>
+        <a href="results.html">Results</a>
+        <a href="discussion.html">Discussion</a>
+        <a href="references.html">References</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Page 2 of 4</div>
+      <h1>Study Design</h1>
+    </div>
+  </div>
+
+  <!-- ── Two-column body ── -->
+  <div class="page-body">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <ol>
+        <li><a href="#lit">1. Literature Review</a>
+          <ol class="toc-sub">
+            <li><a href="#lit-llm">1.1 LLM Evaluation Bias</a></li>
+            <li><a href="#lit-social">1.2 Social Bias in LLMs</a></li>
+            <li><a href="#lit-humor">1.3 Computational Humor</a></li>
+          </ol>
+        </li>
+        <li><a href="#data">2. Dataset</a></li>
+        <li><a href="#method">3. Methodology</a>
+          <ol class="toc-sub">
+            <li><a href="#method-design">3.1 Tournament Design</a></li>
+            <li><a href="#method-confound">3.2 Confound Control</a></li>
+          </ol>
+        </li>
+      </ol>
+      <a href="#" class="toc-top">↑ Back to top</a>
+    </aside>
+
+    <!-- Article -->
+    <article class="article">
+
+      <!-- ── Literature Review ── -->
+      <section class="section" id="lit">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <h2>Literature Review</h2>
+        </div>
+
+        <div class="placeholder">
+          <span class="placeholder-icon">📚</span>
+          <strong>Placeholder — paste your literature review here</strong>
+          The three sub-sections below are ready to receive your content from the Google Doc.
+        </div>
+
+        <h3 id="lit-llm">1.1 LLM Evaluation Bias</h3>
+        <div class="placeholder">
+          <strong>To be completed</strong>
+          Studies documenting verbosity bias, sycophancy, and positional bias in LLM-as-judge settings
+          (Wang et al. 2023; Zheng et al. 2023 — MT-Bench / Chatbot Arena; Pezeshkpour &amp; Hruschka 2023
+          on position effects in MCQ).
+        </div>
+
+        <h3 id="lit-social">1.2 Social Bias in Language Models</h3>
+        <div class="placeholder">
+          <strong>To be completed</strong>
+          Foundational work on stereotype encoding in word embeddings and large models (Bolukbasi et al. 2016;
+          Blodgett et al. 2020 survey; Bender et al. 2021 "Stochastic Parrots"). RLHF alignment and its
+          potential to amplify or suppress category-specific content (Ouyang et al. 2022; Bai et al. 2022
+          Constitutional AI).
+        </div>
+
+        <h3 id="lit-humor">1.3 Computational Humor</h3>
+        <div class="placeholder">
+          <strong>To be completed</strong>
+          NLP approaches to humor detection and preference (Mihalcea &amp; Strapparava 2005; Yang et al. 2015;
+          Hossain et al. 2020 SemEval-2020 Task 7). The "benign violation" theory of humor and its implications
+          for LLM evaluation (McGraw &amp; Warren 2010).
+        </div>
+      </section>
+
+      <!-- ── Dataset ── -->
+      <section class="section" id="data">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <h2>Dataset</h2>
+        </div>
+
+        <p>
+          The base corpus is a public Reddit joke dataset (<code>r/jokes</code> dump), filtered to remove
+          duplicates and empty entries. We retain 10,000 jokes along with their Reddit upvote score, used
+          as a proxy for human approval in robustness checks but not in the main analysis.
+        </p>
+
+        <h3>Annotation procedure</h3>
+        <p>
+          Each joke was automatically assigned to one of nine <em>bias categories</em> — or labeled
+          <em>None</em> — using Claude Haiku via the Anthropic Batch API. The classification prompt
+          included 18 few-shot examples (2 per category + 1 "None") and an explicit definition of
+          each category. Jokes targeting multiple groups were assigned multiple labels
+          (e.g., "Racial/Ethnic/National; Gender-based").
+        </p>
+        <p>
+          To assess annotation quality, a researcher manually labeled five stratified samples of 100 jokes
+          each (500 jokes total), enabling inter-rater reliability analysis between human and LLM annotations.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Target group (examples)</th>
+                <th>% of corpus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rank">1</td>
+                <td>Gender-based</td>
+                <td>Men, women, non-binary</td>
+                <td>~18%</td>
+              </tr>
+              <tr>
+                <td class="rank">2</td>
+                <td>Racial / Ethnic / National</td>
+                <td>Racial or national identity</td>
+                <td>~16%</td>
+              </tr>
+              <tr>
+                <td class="rank">3</td>
+                <td>Age-based</td>
+                <td>Elderly, children</td>
+                <td>~14%</td>
+              </tr>
+              <tr>
+                <td class="rank">4</td>
+                <td>Class / Occupation</td>
+                <td>Socioeconomic class, profession</td>
+                <td>~13%</td>
+              </tr>
+              <tr>
+                <td class="rank">5</td>
+                <td>Religion-based</td>
+                <td>Specific religious groups</td>
+                <td>~12%</td>
+              </tr>
+              <tr>
+                <td class="rank">6</td>
+                <td>Political / Ideological</td>
+                <td>Political parties, ideologies</td>
+                <td>~10%</td>
+              </tr>
+              <tr>
+                <td class="rank">7</td>
+                <td>Appearance / Physical</td>
+                <td>Body size, disability, looks</td>
+                <td>~9%</td>
+              </tr>
+              <tr>
+                <td class="rank">8</td>
+                <td>Mental Health</td>
+                <td>Mental illness, cognitive difference</td>
+                <td>~5%</td>
+              </tr>
+              <tr>
+                <td class="rank">9</td>
+                <td>Sexual Orientation</td>
+                <td>LGBTQ+ identities</td>
+                <td>~3%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── Methodology ── -->
+      <section class="section" id="method">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <h2>Methodology</h2>
+        </div>
+
+        <h3 id="method-design">3.1 Tournament Design</h3>
+        <p>
+          The experiment uses a <strong>round-robin tournament design</strong>: all 9 categories are paired
+          exhaustively against each other (C(9,2) = 36 matchups), with joke position randomised across
+          fights. This design ensures full coverage and allows position effects to be measured independently
+          of category effects.
+        </p>
+
+        <div class="method-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <strong>Sampling</strong>
+            <p>154 jokes per category per matchup (the harmonic minimum across all categories). Fixed seed (42) ensures
+              reproducibility.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <strong>Fight design</strong>
+            <p>Each joke from category A fights 3 randomly drawn jokes from category B. Majority winner (2/3 rounds)
+              wins the fight.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <strong>Position control</strong>
+            <p>Joke positions are alternated across rounds to disentangle content preference from positional preference.
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <strong>Judgment</strong>
+            <p>Claude Sonnet receives both jokes and the prompt "Which of these two jokes is funnier?" with no
+              additional context.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <strong>Aggregation</strong>
+            <p>Results from both directions (A→B and B→A) are merged into canonical pairwise win rates. Global win rates
+              aggregate across all opponents.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">06</div>
+            <strong>API scale</strong>
+            <p>~80,000 individual requests submitted via the Anthropic Batch API. Total cost kept low through Claude
+              Haiku for annotation and batching.</p>
+          </div>
+        </div>
+
+        <h3 id="method-confound">3.2 Confound Control: Joke Length</h3>
+        <p>
+          A natural confound is joke length: longer or more complex jokes may win simply because they
+          contain more content, not because of their category. We compute mean and median character and
+          word counts per category, and regress win rate on length. No significant relationship is found
+          (r ≈ −0.2, p &gt; 0.05; Kruskal-Wallis across categories: n.s.), ruling out length as an
+          explanatory variable. The full length-control figure is on the
+          <a href="results.html#fig-length">Results page</a>.
+        </p>
+
+        <h3>Statistical tests</h3>
+        <p>
+          Wilson 95% confidence intervals are computed for all win rates. Significance against the 50%
+          null is assessed with two-tailed binomial tests. Per-matchup χ² tests assess distributional
+          differences. The category × position interaction is tested with a χ² contingency table.
+        </p>
+      </section>
+
+      <!-- Prev / Next -->
+      <div class="page-nav">
+        <a href="index.html">
+          Previous page
+          <strong>← Home</strong>
+        </a>
+        <a href="results.html" class="next">
+          Next page
+          <strong>Results →</strong>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <footer>
+    <p><strong>Does AI Have a Sense of Humor?</strong></p>
+    <p><span>Sciences Po Paris, EAP, Master 1</span>
+      <span class="sep">|</span>
+      <span>Decoding biases in Artificial Intelligence</span>
+      <span class="sep">|</span>
+      <span>April 2026</span>
+    </p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6">10,000 Reddit jokes · 36 matchups · ~80,000 pairwise
+      judgments · Claude Sonnet (Anthropic)</p>
+  </footer>
+
+  <script>
+    const tocLinks = document.querySelectorAll('.toc a');
+    const sections = document.querySelectorAll('.section[id], h3[id]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+
+</html>

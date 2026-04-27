@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Bias in Humor — Tournament Study</title>
+  <title>AI Bias in Humor — Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,22 +13,26 @@
 
 <body>
 
-  <!-- ═══════════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════════════ -->
+  <!-- ── Site nav ── -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
+      <div class="site-nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="study.html">Study Design</a>
+        <a href="results.html">Results</a>
+        <a href="discussion.html">Discussion</a>
+        <a href="references.html">References</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
   <header class="hero">
     <div class="hero-inner">
-      <span class="hero-badge">Research Paper · Sciences Po Paris · 2026</span>
       <h1>Does AI Have a Sense of Humor?<br><em>Measuring Systematic Bias in LLM Joke Preferences</em></h1>
       <div class="hero-meta">
         <span>Millán González-Bueno Aguirre, Zuzana Navratil, Alice Nguyen, Barthélemy Reboul, Mathias Setterblad</span>
-      </div>
-      <div class="hero-meta">
-        <span>Sciences Po Paris, Master 1</span>
-        <span class="sep">|</span>
-        <span>AI Bias Class, taught by Alex Kindel</span>
-        <span class="sep">|</span>
-        <span>April 2026</span>
       </div>
       <p class="hero-abstract">
         We present a tournament-style experiment measuring whether Claude (Anthropic) exhibits systematic
@@ -36,771 +40,119 @@
         and running 80,000+ pairwise judgments, we uncover a strong <em>category bias</em>
         (Class/Occupation wins 66%, Sexual Orientation wins 38%), a robust <em>recency bias</em>
         (position-2 chosen 65% of the time), and a previously unreported <em>interaction</em> between
-        the two. Length is ruled out as a confound.
+        the two. Joke length is ruled out as a confound.
       </p>
       <div class="hero-links">
-        <a href="https://github.com/[username]/ai-bias-spo" class="hero-link primary" target="_blank">GitHub
+        <a href="https://github.com/WatchfulCoder/ai-bias-spo" class="hero-link primary" target="_blank">GitHub
           Repository</a>
-        <a href="#results" class="hero-link">Jump to Results</a>
-        <a href="#method" class="hero-link">Method</a>
+        <a href="results.html" class="hero-link">Jump to Results</a>
+        <a href="study.html" class="hero-link">Study Design</a>
       </div>
     </div>
   </header>
 
-  <!-- ═══════════════════════════════════════════════════
-     STICKY NAV
-════════════════════════════════════════════════════ -->
-  <!-- <nav class="topnav" aria-label="Sections">
-  <div class="topnav-inner">
-    <a href="#rq">1. Research Question</a>
-    <a href="#lit">2. Literature</a>
-    <a href="#data">3. Data</a>
-    <a href="#method">4. Method</a>
-    <a href="#results">5. Results</a>
-    <a href="#figures">6. Figures</a>
-    <a href="#discussion">7. Discussion</a>
-    <a href="#limits">8. Limitations</a>
-    <a href="#conclusion">9. Conclusion</a>
-    <a href="#refs">References</a>
-  </div>
-</nav> -->
+  <!-- ── Page body (no sidebar on home — content is short enough) ── -->
+  <div class="page-body" style="grid-template-columns: 1fr; max-width: calc(210px + 740px + 5rem);">
+    <article class="article" style="max-width: 740px; margin: 0 auto;">
 
-  <!-- ═══════════════════════════════════════════════════
-     PAGE BODY (TOC + Article)
-════════════════════════════════════════════════════ -->
-  <div class="page-body">
-
-    <!-- ─── Sidebar TOC ─── -->
-    <aside class="toc" aria-label="Table of contents">
-      <div class="toc-title">Contents</div>
-      <ol>
-        <li><a href="#rq">1. Research Question</a></li>
-        <li><a href="#lit">2. Literature Review</a></li>
-        <li><a href="#data">3. Dataset</a></li>
-        <li><a href="#method">4. Methodology</a></li>
-        <li>
-          <a href="#results">5. Results</a>
-          <ol class="toc-sub">
-            <li><a href="#res-category">5.1 Category Bias</a></li>
-            <li><a href="#res-position">5.2 Recency Bias</a></li>
-            <li><a href="#res-interaction">5.3 Interaction</a></li>
-          </ol>
-        </li>
-        <li><a href="#figures">6. Figures</a></li>
-        <li><a href="#discussion">7. Discussion</a></li>
-        <li><a href="#limits">8. Limitations</a></li>
-        <li><a href="#conclusion">9. Conclusion</a></li>
-        <li><a href="#refs">References</a></li>
-      </ol>
-    </aside>
-
-    <!-- ─── Article ─── -->
-    <article class="article">
-
-      <!-- ─────────────────────────────────────────
-         1. RESEARCH QUESTION
-    ───────────────────────────────────────────── -->
+      <!-- Research Question -->
       <section class="section" id="rq">
         <div class="section-header">
           <span class="section-num">01</span>
           <h2>Research Question</h2>
         </div>
-
         <p>
           Large language models are now routinely used as <em>evaluators</em>: they rank essays, summarise
-          conversations,
-          score creative writing, and recommend content. Unlike generation tasks, evaluation tasks expose the model's
-          implicit <em>preferences</em> — which may encode biases that are invisible in standard benchmarks.
+          conversations, score creative writing, and recommend content. Unlike generation tasks, evaluation
+          tasks expose the model's implicit <em>preferences</em> — which may encode biases that are invisible
+          in standard benchmarks.
         </p>
         <p>
-          Humor is a particularly revealing test case. It is culturally situated, socially sensitive, and highly
-          subjective — yet it allows for clean experimental control (pairwise comparisons, randomised positions,
-          factorial category design). If a model systematically favors jokes about certain social groups while
-          downgrading others, this constitutes a measurable, consequential bias.
+          Humor is a particularly revealing test case. It is culturally situated, socially sensitive, and
+          highly subjective — yet it allows for clean experimental control (pairwise comparisons, randomised
+          positions, factorial category design). If a model systematically favors jokes about certain social
+          groups while downgrading others, this constitutes a measurable, consequential bias.
         </p>
-
         <div class="callout">
-          <p><strong>Central research question:</strong> Does Claude exhibit systematic, category-level bias when
-            asked to evaluate the humor of jokes targeting different social groups? And if so, does this bias interact
-            with known positional artifacts such as recency bias?</p>
+          <p><strong>Central question:</strong> Does Claude exhibit systematic, category-level bias when
+            asked to evaluate the humor of jokes targeting different social groups? And if so, does this bias
+            interact with known positional artifacts such as recency bias?</p>
         </div>
 
+        <h3>Hypotheses</h3>
         <p>
-          Three hypotheses are tested:
+          <strong>H1 — Category bias.</strong> Win rates across the nine categories will differ significantly
+          from the 50% baseline expected under a fair evaluator (χ² test, Wilson 95% CIs).
         </p>
         <p>
-          <strong>H1 — Category bias.</strong> Win rates across the nine categories will differ significantly from
-          the 50% baseline expected under a fair evaluator (χ² test, Wilson 95% CIs).
+          <strong>H2 — Recency bias.</strong> The model will show a significant positional preference,
+          choosing the second-presented joke more often than the first across all matchups.
         </p>
         <p>
-          <strong>H2 — Recency bias.</strong> The model will show a significant positional preference, choosing
-          the second-presented joke more often than the first across all matchups.
-        </p>
-        <p>
-          <strong>H3 — Interaction.</strong> Categories with strong inherent preference will resist the recency
-          disadvantage when placed in position 1, producing a detectable category × position interaction.
+          <strong>H3 — Interaction.</strong> Categories with strong inherent preference will resist the
+          recency disadvantage when placed in position 1, producing a detectable category × position interaction.
         </p>
       </section>
 
-      <!-- ─────────────────────────────────────────
-         2. LITERATURE REVIEW
-    ───────────────────────────────────────────── -->
-      <section class="section" id="lit">
+      <!-- Key Findings -->
+      <section class="section" id="findings">
         <div class="section-header">
           <span class="section-num">02</span>
-          <h2>Literature Review</h2>
+          <h2>Key Findings</h2>
         </div>
+        <p>Three main results emerge from 36 head-to-head matchups and over 80,000 pairwise judgments.
+          Full analysis and figures are on the <a href="results.html">Results</a> page.</p>
 
-        <div class="placeholder">
-          <span class="placeholder-icon">📚</span>
-          <strong>Placeholder — to be completed</strong>
-          This section will survey the relevant literature across three themes:
-
-          <ul>
-            <li>
-              <strong>LLM evaluation bias.</strong> Studies documenting verbosity bias, sycophancy, and positional
-              bias in LLM-as-judge settings (Wang et al. 2023; Zheng et al. 2023 — MT-Bench / Chatbot Arena;
-              Pezeshkpour &amp; Hruschka 2023 on position effects in MCQ).
-            </li>
-            <li>
-              <strong>Social bias in language models.</strong> Foundational work on stereotype encoding in
-              word embeddings and large models (Bolukbasi et al. 2016; Blodgett et al. 2020 survey;
-              Bender et al. 2021 "Stochastic Parrots"). RLHF alignment and its potential to amplify or suppress
-              category-specific content (Ouyang et al. 2022; Bai et al. 2022 Constitutional AI).
-            </li>
-            <li>
-              <strong>Computational humor.</strong> NLP approaches to humor detection and preference
-              (Mihalcea &amp; Strapparava 2005; Yang et al. 2015; Hossain et al. 2020 SemEval-2020 Task 7).
-              The "benign violation" theory of humor and its implications for LLM evaluation
-              (McGraw &amp; Warren 2010).
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         3. DATASET
-    ───────────────────────────────────────────── -->
-      <section class="section" id="data">
-        <div class="section-header">
-          <span class="section-num">03</span>
-          <h2>Dataset</h2>
-        </div>
-
-        <p>
-          The base corpus is a public Reddit joke dataset (<code>r/jokes</code> dump),
-          filtered to remove duplicates and empty entries. We retain 10,000 jokes along with their
-          Reddit upvote score, which we use as a proxy for human approval in robustness checks (but
-          do not use in the main analysis).
-        </p>
-
-        <h3>Annotation procedure</h3>
-        <p>
-          Each joke was automatically assigned to one of nine <em>bias categories</em> — or labeled
-          <em>None</em> — using Claude Haiku via the Anthropic Batch API. The classification prompt
-          included 18 few-shot examples (2 per category + 1 "None") and an explicit definition of
-          each category. Jokes targeting multiple groups were assigned multiple labels (e.g.,
-          "Racial/Ethnic/National; Gender-based").
-        </p>
-        <p>
-          To assess annotation quality, a researcher manually labeled five stratified samples of 100
-          jokes each (500 jokes total), enabling inter-rater reliability analysis between human and
-          LLM annotations.
-        </p>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Category</th>
-                <th>Target group (examples)</th>
-                <th>% of corpus</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="rank">1</td>
-                <td>Gender-based</td>
-                <td>Men, women, non-binary</td>
-                <td>~18%</td>
-              </tr>
-              <tr>
-                <td class="rank">2</td>
-                <td>Racial / Ethnic / National</td>
-                <td>Racial or national identity</td>
-                <td>~16%</td>
-              </tr>
-              <tr>
-                <td class="rank">3</td>
-                <td>Age-based</td>
-                <td>Elderly, children</td>
-                <td>~14%</td>
-              </tr>
-              <tr>
-                <td class="rank">4</td>
-                <td>Class / Occupation</td>
-                <td>Socioeconomic class, profession</td>
-                <td>~13%</td>
-              </tr>
-              <tr>
-                <td class="rank">5</td>
-                <td>Religion-based</td>
-                <td>Specific religious groups</td>
-                <td>~12%</td>
-              </tr>
-              <tr>
-                <td class="rank">6</td>
-                <td>Political / Ideological</td>
-                <td>Political parties, ideologies</td>
-                <td>~10%</td>
-              </tr>
-              <tr>
-                <td class="rank">7</td>
-                <td>Appearance / Physical</td>
-                <td>Body size, disability, looks</td>
-                <td>~9%</td>
-              </tr>
-              <tr>
-                <td class="rank">8</td>
-                <td>Mental Health</td>
-                <td>Mental illness, cognitive difference</td>
-                <td>~5%</td>
-              </tr>
-              <tr>
-                <td class="rank">9</td>
-                <td>Sexual Orientation</td>
-                <td>LGBTQ+ identities</td>
-                <td>~3%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         4. METHODOLOGY
-    ───────────────────────────────────────────── -->
-      <section class="section" id="method">
-        <div class="section-header">
-          <span class="section-num">04</span>
-          <h2>Methodology</h2>
-        </div>
-
-        <p>
-          The experiment uses a <strong>round-robin tournament design</strong>: all 9 categories are paired
-          exhaustively against each other (C(9,2) = 36 matchups), with position randomised across fights.
-          This design ensures full coverage and allows position effects to be measured independently.
-        </p>
-
-        <div class="method-steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <strong>Sampling</strong>
-            <p>For each matchup, 154 jokes per category (the harmonic minimum across all categories). A fixed seed (42)
-              ensures reproducibility.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">02</div>
-            <strong>Fight design</strong>
-            <p>Each joke from category A fights 3 randomly drawn jokes from category B. The majority winner (2/3 rounds)
-              wins the fight.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">03</div>
-            <strong>Position control</strong>
-            <p>Joke positions are alternated: in round <em>r</em>, the role of "joke 1" and "joke 2" is swapped to
-              disentangle content from position effects.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">04</div>
-            <strong>Judgment</strong>
-            <p>Claude Sonnet receives both jokes and the prompt "Which of these two jokes is funnier?" with no
-              additional context (~80,000 API calls via Batch API).</p>
-          </div>
-          <div class="step">
-            <div class="step-num">05</div>
-            <strong>Aggregation</strong>
-            <p>Results from both directions (A→B and B→A) are merged into canonical pairwise win rates. Global win rates
-              aggregate across all opponents.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">06</div>
-            <strong>Statistics</strong>
-            <p>Wilson 95% CIs, binomial tests (H₀ = 0.5), χ² per matchup, Kruskal-Wallis for length confound, Pearson
-              correlation.</p>
-          </div>
-        </div>
-
-        <h3>Confound control: joke length</h3>
-        <p>
-          A natural confound is joke length: longer or more complex jokes may win simply because they contain
-          more content, not because of their category. We compute mean and median character/word counts per
-          category and regress win rate on length. No significant relationship is found (r ≈ −0.2, p &gt; 0.05;
-          Kruskal-Wallis across categories: n.s.), ruling out length as an explanatory variable.
-          See Figure 4 for the full length-control analysis.
-        </p>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         5. RESULTS
-    ───────────────────────────────────────────── -->
-      <section class="section" id="results">
-        <div class="section-header">
-          <span class="section-num">05</span>
-          <h2>Results</h2>
-        </div>
-
-        <!-- Key findings at a glance -->
         <div class="findings">
           <div class="finding">
             <div class="finding-stat">66%</div>
             <div class="finding-label">Win rate · Class/Occupation</div>
-            <p>The strongest category beats opponents in two-thirds of all matchups — the highest win rate across all
-              nine groups.</p>
+            <p>The strongest category beats opponents in two-thirds of all matchups — 16 points above the fair-evaluator
+              baseline.</p>
           </div>
           <div class="finding red">
             <div class="finding-stat">38%</div>
             <div class="finding-label">Win rate · Sexual Orientation</div>
-            <p>The weakest category: loses more often than any other group, suggesting the model consistently
-              downweights this type of humor.</p>
+            <p>The weakest category: loses more often than any other group, 12 points below baseline.</p>
           </div>
           <div class="finding gold">
             <div class="finding-stat">65%</div>
             <div class="finding-label">Recency bias · position 2</div>
-            <p>Across all matchups and categories, the model selects the <em>second</em> joke 65% of the time — a highly
-              significant positional artifact.</p>
+            <p>Across all matchups, the model selects the <em>second</em> joke 65% of the time — a highly significant
+              positional artifact.</p>
           </div>
           <div class="finding green">
             <div class="finding-stat">↕</div>
             <div class="finding-label">Interaction effect</div>
             <p>Strong categories resist positional disadvantage: Class/Occupation at position 1 still wins 54% vs. only
-              21% for Sexual Orientation at position 1.</p>
+              21% for Sexual Orientation.</p>
           </div>
         </div>
-
-        <!-- 5.1 Category Bias -->
-        <h3 id="res-category">5.1 &nbsp; Category Bias</h3>
-        <p>
-          Global win rates vary substantially across categories (χ² = 1,247, df = 8, p &lt; 0.001),
-          rejecting the null hypothesis of a fair evaluator. The spread covers nearly 30 percentage
-          points between the strongest and weakest categories. Three categories win significantly more than
-          50% (Class/Occupation, Religion, Political) and two win significantly less
-          (Sexual Orientation, Racial/Ethnic/National).
-        </p>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Category</th>
-                <th>Win Rate</th>
-                <th>95% CI</th>
-                <th>vs. 50%</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="top3">
-                <td class="rank">1</td>
-                <td>Class / Occupation</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:66px"></span>66%</td>
-                <td>[63 – 69]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="top3">
-                <td class="rank">2</td>
-                <td>Religion-based</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:58px"></span>58%</td>
-                <td>[55 – 61]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="top3">
-                <td class="rank">3</td>
-                <td>Political / Ideological</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:54px"></span>54%</td>
-                <td>[51 – 57]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr>
-                <td class="rank">4</td>
-                <td>Age-based</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:53px"></span>53%</td>
-                <td>[50 – 56]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr>
-                <td class="rank">5</td>
-                <td>Mental Health</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:51px"></span>51%</td>
-                <td>[48 – 54]</td>
-                <td><span class="sig">n.s.</span></td>
-              </tr>
-              <tr>
-                <td class="rank">6</td>
-                <td>Gender-based</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:49px"></span>49%</td>
-                <td>[46 – 52]</td>
-                <td><span class="sig">n.s.</span></td>
-              </tr>
-              <tr>
-                <td class="rank">7</td>
-                <td>Appearance / Physical</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:45px"></span>45%</td>
-                <td>[42 – 48]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr class="bot3">
-                <td class="rank">8</td>
-                <td>Racial / Ethnic / National</td>
-                <td class="bar-cell"><span class="bar bar-l" style="width:41px"></span>41%</td>
-                <td>[38 – 44]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="bot3">
-                <td class="rank">9</td>
-                <td>Sexual Orientation</td>
-                <td class="bar-cell"><span class="bar bar-l" style="width:38px"></span>38%</td>
-                <td>[35 – 41]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- 5.2 Recency Bias -->
-        <h3 id="res-position">5.2 &nbsp; Recency Bias</h3>
-        <p>
-          Pooling all fights across categories, the model selects the second joke in 65.3% of cases
-          (binomial test: p &lt; 0.001, 95% CI [64.1 – 66.5]). This <em>recency bias</em> is consistent
-          with findings from the LLM-as-judge literature on position effects, where models tend to favor
-          recently read content due to the structure of attention in transformers.
-        </p>
-        <p>
-          The effect is robust: it is present in every single one of the 36 matchups. Position 2 win rates
-          per category range from 55% (Sexual Orientation) to 79% (Class/Occupation).
-        </p>
-
-        <!-- 5.3 Interaction -->
-        <h3 id="res-interaction">5.3 &nbsp; Interaction Between Category and Position</h3>
-        <p>
-          The novel finding of this study is that <strong>category bias and recency bias interact</strong>.
-          Strong categories partially compensate for the positional handicap of being placed first. Specifically:
-        </p>
-        <div class="callout gold">
-          <p>
-            Class/Occupation in <strong>position 1</strong> (disadvantaged) still wins <strong>54%</strong> of fights —
-            well above the all-category average of 35% at position 1. Sexual Orientation in the same position wins
-            only <strong>21%</strong>. The difference (33 pp) is highly significant (χ² test, p &lt; 0.001).
-          </p>
-        </div>
-        <p>
-          This interaction suggests that the model holds a sufficiently strong a priori preference for certain
-          content types that it overrides the recency heuristic. Conversely, weak categories are doubly penalized:
-          they are both intrinsically less preferred and receive no positional compensation.
-        </p>
       </section>
 
-      <!-- ─────────────────────────────────────────
-         6. FIGURES
-    ───────────────────────────────────────────── -->
-      <section class="section" id="figures">
-        <div class="section-header">
-          <span class="section-num">06</span>
-          <h2>Figures</h2>
-        </div>
-
-        <figure class="fig">
-          <img src="figures/winrate_ranking.png"
-            alt="Horizontal bar chart: global win rates per category with 95% CI" />
-          <figcaption>
-            <span class="fig-num">Figure 1.</span>
-            <strong>Global win-rate ranking.</strong>
-            Horizontal bars show each category's win rate across all opponents; error bars represent
-            95% Wilson confidence intervals. The 50% baseline (dashed line) marks an unbiased evaluator.
-            Class/Occupation sits 16 percentage points above baseline; Sexual Orientation sits 12 points below.
-          </figcaption>
-        </figure>
-
-        <figure class="fig">
-          <img src="figures/matchup_heatmap.png" alt="9×9 heatmap of pairwise win probabilities" />
-          <figcaption>
-            <span class="fig-num">Figure 2.</span>
-            <strong>Head-to-head matchup heatmap.</strong>
-            Each cell <em>(i, j)</em> shows the probability that category <em>i</em> beats category <em>j</em>.
-            The diverging color scale runs from blue (row loses, p ≈ 0.2) through white (50/50) to red
-            (row wins, p ≈ 0.8). The dominance of Class/Occupation (top row, mostly red) and the weakness
-            of Sexual Orientation (bottom row, mostly blue) are visible across all opponents.
-          </figcaption>
-        </figure>
-
-        <figure class="fig">
-          <img src="figures/position_bias.png"
-            alt="Grouped bar chart: win rates at position 1 vs. position 2 per category" />
-          <figcaption>
-            <span class="fig-num">Figure 3.</span>
-            <strong>Recency bias by category.</strong>
-            Paired bars show each category's win rate when placed first (dark) vs. second (light).
-            Dashed reference lines mark the global baselines (~35% pos. 1, ~65% pos. 2). The vertical
-            gap between paired bars is consistent across all categories, but its absolute position shifts:
-            strong categories push both bars upward.
-          </figcaption>
-        </figure>
-
-        <figure class="fig">
-          <img src="figures/length_control.png" alt="Scatter plot and boxplot of joke length vs. win rate" />
-          <figcaption>
-            <span class="fig-num">Figure 4.</span>
-            <strong>Length as a confound.</strong>
-            <em>Left:</em> scatter plot of mean joke length (characters) against global win rate, with a
-            linear regression overlay (r ≈ −0.2, p &gt; 0.05). <em>Right:</em> length distributions per
-            category (boxplots). Neither panel reveals a systematic association, ruling out joke length
-            as an explanatory variable.
-          </figcaption>
-        </figure>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         7. DISCUSSION
-    ───────────────────────────────────────────── -->
-      <section class="section" id="discussion">
-        <div class="section-header">
-          <span class="section-num">07</span>
-          <h2>Discussion</h2>
-        </div>
-
-        <div class="placeholder">
-          <span class="placeholder-icon">💬</span>
-          <strong>Placeholder — to be completed</strong>
-          This section will interpret the results in light of the research hypotheses and prior work.
-          Planned sub-sections:
-          <ul>
-            <li><strong>Why does Class/Occupation dominate?</strong> Hypothesis: this category often
-              relies on wordplay and clever structure (puns, reversals) rather than on transgressive
-              content, making it safer for a safety-tuned model to reward. Alternatively, the training
-              corpus may over-represent this style of joke.</li>
-            <li><strong>Why does Sexual Orientation lose?</strong> Hypothesis: safety alignment
-              (Constitutional AI, RLHF) suppresses content that targets LGBTQ+ groups — the model
-              refuses to "reward" it with a win even in a comparative humor evaluation. This would
-              represent a tension between safety and evaluation neutrality.</li>
-            <li><strong>Recency bias as an attention artifact.</strong> Comparison with Zheng et al.
-              (2023) and discussion of whether system-prompt priming could mitigate the effect.</li>
-            <li><strong>Implications for LLM-as-judge frameworks.</strong> Random position order as a
-              minimal mitigation; aggregation strategies; the need for multi-model juries.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         8. LIMITATIONS
-    ───────────────────────────────────────────── -->
-      <section class="section" id="limits">
-        <div class="section-header">
-          <span class="section-num">08</span>
-          <h2>Limitations</h2>
-        </div>
-
-        <ul class="limit-list">
-          <li>
-            <span class="icon">🤖</span>
-            <div>
-              <strong>Single model, single snapshot.</strong>
-              All judgments were made by one version of Claude Sonnet. Results may not generalise
-              to other LLMs (GPT-4o, Gemini, Llama 3) or to future releases of the same model
-              after further safety tuning.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🏷️</span>
-            <div>
-              <strong>Annotation dependency.</strong>
-              Category labels were produced by Claude Haiku, creating a circular dependency: the same
-              model family annotates <em>and</em> judges. Label noise propagates into tournament results.
-              The five human-annotated validation samples provide partial coverage only.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🌍</span>
-            <div>
-              <strong>Dataset scope and representativeness.</strong>
-              The Reddit joke corpus skews toward English-language, culturally Western humor, produced
-              by a non-representative internet population. Category proportions in the corpus may not
-              reflect real-world distributions.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🎭</span>
-            <div>
-              <strong>"Funniness" is underdefined.</strong>
-              The prompt asked for the "funniest" joke without defining funniness. The model's judgments
-              may conflate humor, harmlessness, and other latent criteria shaped by RLHF, rather than
-              reflecting pure humor perception.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🔬</span>
-            <div>
-              <strong>No causal mechanism.</strong>
-              We observe systematic preferences but cannot directly attribute them to specific causes
-              (training data composition, RLHF reward model, Constitutional AI principles) without
-              targeted ablations unavailable in a black-box API setting.
-            </div>
-          </li>
-          <li>
-            <span class="icon">📊</span>
-            <div>
-              <strong>Statistical power per cell.</strong>
-              With 154 jokes per side per matchup, some pairwise estimates carry wide confidence intervals.
-              Small within-matchup effects may remain underpowered.
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         9. CONCLUSION
-    ───────────────────────────────────────────── -->
-      <section class="section" id="conclusion">
-        <div class="section-header">
-          <span class="section-num">09</span>
-          <h2>Conclusion</h2>
-        </div>
-
-        <p>
-          We set out to ask whether a state-of-the-art language model judges humor fairly across social
-          categories. The answer is unambiguously no. Two systematic biases coexist: a <em>category bias</em>
-          (a 28-point spread from 66% to 38% win rate) and a <em>recency bias</em> (position-2 preferred
-          in 65% of fights). Crucially, these are not independent: strong categories partially resist
-          positional disadvantage, revealing a hierarchy of preferences that overrides low-level attention
-          artifacts.
-        </p>
-        <p>
-          Joke length is ruled out as a confound, and the effects are consistent and statistically robust
-          across 36 matchups and 80,000+ individual judgments.
-        </p>
-        <p>
-          The practical implication is that LLM-based evaluators should not be deployed as neutral arbiters
-          of creative content without explicit bias auditing. Tournament-style experiments — cheap to run
-          at scale with modern batch APIs — offer a tractable framework for such audits. Future work should
-          replicate these results across models and languages, investigate the safety-alignment origins of
-          category biases, and explore debiasing strategies (position shuffling, multi-model juries,
-          chain-of-thought elicitation).
-        </p>
-
-        <div class="callout">
-          <p>
-            <strong>Open science.</strong> All code, annotation prompts, and aggregated results are
-            available at <a href="https://github.com/[username]/ai-bias-spo"
-              target="_blank">github.com/[username]/ai-bias-spo</a>.
-            Raw pairings (~59 MB) are available on request.
-          </p>
-        </div>
-      </section>
-
-      <!-- ─────────────────────────────────────────
-         REFERENCES
-    ───────────────────────────────────────────── -->
-      <section class="section" id="refs">
-        <div class="section-header">
-          <span class="section-num"></span>
-          <h2>References</h2>
-        </div>
-
-        <div class="placeholder" style="margin-bottom:1.5rem">
-          <span class="placeholder-icon">📝</span>
-          <strong>Placeholder — bibliography to be completed</strong>
-          The entries below are indicative; verify exact details (volume, pages, DOI) before submission.
-        </div>
-
-        <ul class="ref-list">
-          <li>
-            Bai, Y., Jones, A., Ndousse, K., et al. (2022). <em>Training a Helpful and Harmless Assistant with
-              Reinforcement Learning from Human Feedback.</em> Anthropic preprint.
-            <a href="https://arxiv.org/abs/2204.05862" target="_blank">arXiv:2204.05862</a>
-          </li>
-          <li>
-            Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S. (2021). On the Dangers of
-            Stochastic Parrots: Can Language Models Be Too Big? <em>ACM FAccT 2021.</em>
-            <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" target="_blank">DOI:10.1145/3442188.3445922</a>
-          </li>
-          <li>
-            Blodgett, S. L., Barocas, S., Daumé III, H., &amp; Wallach, H. (2020). Language (Technology) is Power:
-            A Critical Survey of "Bias" in NLP. <em>ACL 2020.</em>
-            <a href="https://aclanthology.org/2020.acl-main.485" target="_blank">ACL Anthology</a>
-          </li>
-          <li>
-            Bolukbasi, T., Chang, K.-W., Zou, J., Saligrama, V., &amp; Kalai, A. (2016). Man is to Computer
-            Programmer as Woman is to Homemaker? Debiasing Word Embeddings. <em>NeurIPS 2016.</em>
-          </li>
-          <li>
-            Hossain, N., Krumm, J., &amp; Gamon, M. (2020). "President Vows to Cut &lt;Taxes&gt; Hair":
-            Dataset and Analysis of Creative Text Editing for Humorous Headlines. <em>NAACL 2020.</em>
-          </li>
-          <li>
-            McGraw, A. P., &amp; Warren, C. (2010). Benign Violations: Making Immoral Behavior Funny.
-            <em>Psychological Science, 21(8),</em> 1141–1149.
-          </li>
-          <li>
-            Mihalcea, R., &amp; Strapparava, C. (2005). Making Computers Laugh: Investigations in Automatic
-            Humor Recognition. <em>HLT/EMNLP 2005.</em>
-          </li>
-          <li>
-            Ouyang, L., Wu, J., Jiang, X., et al. (2022). Training Language Models to Follow Instructions with
-            Human Feedback. <em>NeurIPS 2022.</em>
-            <a href="https://arxiv.org/abs/2203.02155" target="_blank">arXiv:2203.02155</a>
-          </li>
-          <li>
-            Pezeshkpour, P., &amp; Hruschka, E. (2023). Large Language Models' Sensitivity to the Order of
-            Options in Multiple-Choice Questions. Preprint.
-            <a href="https://arxiv.org/abs/2308.11483" target="_blank">arXiv:2308.11483</a>
-          </li>
-          <li>
-            Wang, P., Li, L., Chen, L., et al. (2023). Is ChatGPT a Good NLG Evaluator? A Preliminary Study.
-            <em>NewSumm workshop, EMNLP 2023.</em>
-            <a href="https://arxiv.org/abs/2303.04048" target="_blank">arXiv:2303.04048</a>
-          </li>
-          <li>
-            Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and
-            Chatbot Arena. <em>NeurIPS 2023.</em>
-            <a href="https://arxiv.org/abs/2306.05685" target="_blank">arXiv:2306.05685</a>
-          </li>
-        </ul>
-      </section>
+      <!-- Page nav -->
+      <div class="page-nav">
+        <span></span>
+        <a href="study.html" class="next">
+          Next page
+          <strong>Study Design →</strong>
+        </a>
+      </div>
 
     </article>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════════════════ -->
   <footer>
-    <p>
-      <strong>Does AI Have a Sense of Humor? Measuring Systematic Bias in LLM Joke Preferences</strong>
+    <p><strong>Does AI Have a Sense of Humor?</strong></p>
+    <p><span>Sciences Po Paris, EAP, Master 1</span>
+      <span class="sep">|</span>
+      <span>Decoding biases in Artificial Intelligence</span>
+      <span class="sep">|</span>
+      <span>April 2026</span>
     </p>
-    <p>Millán González-Bueno Aguirre, Zuzana Navratil, Alice Nguyen, Barthélemy Reboul, Mathias Setterblad · Sciences Po
-      Paris, Master 1 · 2026</p>
-    <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.6">
-      Dataset: 10,000 Reddit jokes · 36 matchups · ~80,000 pairwise judgments · Model: Claude Sonnet (Anthropic)
-    </p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6">10,000 Reddit jokes · 36 matchups · ~80,000 pairwise
+      judgments · Claude Sonnet (Anthropic)</p>
   </footer>
-
-  <!-- ─── TOC active-link script ─── -->
-  <script>
-    const tocLinks = document.querySelectorAll('.toc a');
-    const sections = document.querySelectorAll('.section[id]');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          tocLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-
-    sections.forEach(s => observer.observe(s));
-  </script>
 
 </body>
 

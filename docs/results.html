@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — AI Bias in Humor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ── Site nav ── -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
+      <div class="site-nav-links">
+        <a href="index.html">Home</a>
+        <a href="study.html">Study Design</a>
+        <a href="results.html" class="active">Results</a>
+        <a href="discussion.html">Discussion</a>
+        <a href="references.html">References</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-label">Page 3 of 4</div>
+      <h1>Results</h1>
+    </div>
+  </div>
+
+  <!-- ── Two-column body ── -->
+  <div class="page-body">
+
+    <!-- Sidebar TOC -->
+    <aside class="toc">
+      <div class="toc-title">On this page</div>
+      <ol>
+        <li><a href="#res-category">1. Category Bias</a></li>
+        <li><a href="#res-position">2. Recency Bias</a></li>
+        <li><a href="#res-interaction">3. Interaction Effect</a></li>
+        <li><a href="#figures">4. Figures</a>
+          <ol class="toc-sub">
+            <li><a href="#fig-winrate">Fig. 1 — Win-rate ranking</a></li>
+            <li><a href="#fig-heatmap">Fig. 2 — Matchup heatmap</a></li>
+            <li><a href="#fig-position">Fig. 3 — Position bias</a></li>
+            <li><a href="#fig-length">Fig. 4 — Length control</a></li>
+          </ol>
+        </li>
+      </ol>
+      <a href="#" class="toc-top">↑ Back to top</a>
+    </aside>
+
+    <!-- Article -->
+    <article class="article">
+
+      <!-- ── Category Bias ── -->
+      <section class="section" id="res-category">
+        <div class="section-header">
+          <span class="section-num">1</span>
+          <h2>Category Bias</h2>
+        </div>
+
+        <p>
+          Global win rates vary substantially across categories (χ² = 1,247, df = 8, p &lt; 0.001),
+          rejecting the null hypothesis of a fair evaluator. The spread covers nearly 30 percentage
+          points between the strongest and weakest categories. Three categories win significantly more
+          than 50% (Class/Occupation, Religion, Political) and two win significantly less
+          (Sexual Orientation, Racial/Ethnic/National).
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Win Rate</th>
+                <th>95% CI</th>
+                <th>vs. 50%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="top3">
+                <td class="rank">1</td>
+                <td>Class / Occupation</td>
+                <td class="bar-cell"><span class="bar bar-h" style="width:66px"></span>66%</td>
+                <td>[63 – 69]</td>
+                <td><span class="sig sig-strong">p &lt; .001</span></td>
+              </tr>
+              <tr class="top3">
+                <td class="rank">2</td>
+                <td>Religion-based</td>
+                <td class="bar-cell"><span class="bar bar-h" style="width:58px"></span>58%</td>
+                <td>[55 – 61]</td>
+                <td><span class="sig sig-strong">p &lt; .001</span></td>
+              </tr>
+              <tr class="top3">
+                <td class="rank">3</td>
+                <td>Political / Ideological</td>
+                <td class="bar-cell"><span class="bar bar-h" style="width:54px"></span>54%</td>
+                <td>[51 – 57]</td>
+                <td><span class="sig sig-strong">p &lt; .05</span></td>
+              </tr>
+              <tr>
+                <td class="rank">4</td>
+                <td>Age-based</td>
+                <td class="bar-cell"><span class="bar bar-m" style="width:53px"></span>53%</td>
+                <td>[50 – 56]</td>
+                <td><span class="sig sig-strong">p &lt; .05</span></td>
+              </tr>
+              <tr>
+                <td class="rank">5</td>
+                <td>Mental Health</td>
+                <td class="bar-cell"><span class="bar bar-m" style="width:51px"></span>51%</td>
+                <td>[48 – 54]</td>
+                <td><span class="sig">n.s.</span></td>
+              </tr>
+              <tr>
+                <td class="rank">6</td>
+                <td>Gender-based</td>
+                <td class="bar-cell"><span class="bar bar-m" style="width:49px"></span>49%</td>
+                <td>[46 – 52]</td>
+                <td><span class="sig">n.s.</span></td>
+              </tr>
+              <tr>
+                <td class="rank">7</td>
+                <td>Appearance / Physical</td>
+                <td class="bar-cell"><span class="bar bar-m" style="width:45px"></span>45%</td>
+                <td>[42 – 48]</td>
+                <td><span class="sig sig-strong">p &lt; .05</span></td>
+              </tr>
+              <tr class="bot3">
+                <td class="rank">8</td>
+                <td>Racial / Ethnic / National</td>
+                <td class="bar-cell"><span class="bar bar-l" style="width:41px"></span>41%</td>
+                <td>[38 – 44]</td>
+                <td><span class="sig sig-strong">p &lt; .001</span></td>
+              </tr>
+              <tr class="bot3">
+                <td class="rank">9</td>
+                <td>Sexual Orientation</td>
+                <td class="bar-cell"><span class="bar bar-l" style="width:38px"></span>38%</td>
+                <td>[35 – 41]</td>
+                <td><span class="sig sig-strong">p &lt; .001</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── Recency Bias ── -->
+      <section class="section" id="res-position">
+        <div class="section-header">
+          <span class="section-num">2</span>
+          <h2>Recency Bias</h2>
+        </div>
+
+        <p>
+          Pooling all fights across categories, the model selects the second joke in 65.3% of cases
+          (binomial test: p &lt; 0.001, 95% CI [64.1 – 66.5]). This <em>recency bias</em> is consistent
+          with findings from the LLM-as-judge literature on position effects, where models tend to favor
+          recently read content due to the structure of attention in transformers.
+        </p>
+        <p>
+          The effect is robust: it is present in every single one of the 36 matchups. Position-2 win rates
+          per category range from 55% (Sexual Orientation) to 79% (Class/Occupation).
+        </p>
+
+        <div class="callout gold">
+          <p>
+            Even the category most resistant to recency bias (Class/Occupation) still shows a 25-point
+            gap between position 1 (54%) and position 2 (79%). No category reverses or neutralises the effect.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── Interaction ── -->
+      <section class="section" id="res-interaction">
+        <div class="section-header">
+          <span class="section-num">3</span>
+          <h2>Interaction Effect</h2>
+        </div>
+
+        <p>
+          The novel finding of this study is that <strong>category bias and recency bias interact</strong>.
+          Strong categories partially compensate for the positional handicap of being placed first.
+        </p>
+
+        <div class="callout">
+          <p>
+            Class/Occupation in <strong>position 1</strong> (disadvantaged) still wins <strong>54%</strong>
+            of fights — well above the all-category average of 35% at position 1. Sexual Orientation in
+            the same position wins only <strong>21%</strong>. The difference (33 pp) is highly significant
+            (χ² test, p &lt; 0.001).
+          </p>
+        </div>
+
+        <p>
+          This interaction suggests that the model holds a sufficiently strong a priori preference for
+          certain content types that it overrides the recency heuristic in a meaningful fraction of cases.
+          Conversely, weak categories are doubly penalized: they are both intrinsically less preferred
+          <em>and</em> receive no positional compensation.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Win rate at position 1</th>
+                <th>Win rate at position 2</th>
+                <th>Gap</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="top3">
+                <td>Class / Occupation</td>
+                <td>54%</td>
+                <td>79%</td>
+                <td>25 pp</td>
+              </tr>
+              <tr>
+                <td>Religion-based</td>
+                <td>42%</td>
+                <td>74%</td>
+                <td>32 pp</td>
+              </tr>
+              <tr>
+                <td>Age-based</td>
+                <td>38%</td>
+                <td>68%</td>
+                <td>30 pp</td>
+              </tr>
+              <tr>
+                <td>Gender-based</td>
+                <td>35%</td>
+                <td>63%</td>
+                <td>28 pp</td>
+              </tr>
+              <tr>
+                <td>Mental Health</td>
+                <td>34%</td>
+                <td>68%</td>
+                <td>34 pp</td>
+              </tr>
+              <tr>
+                <td>Appearance / Physical</td>
+                <td>30%</td>
+                <td>60%</td>
+                <td>30 pp</td>
+              </tr>
+              <tr>
+                <td>Political / Ideological</td>
+                <td>29%</td>
+                <td>66%</td>
+                <td>37 pp</td>
+              </tr>
+              <tr>
+                <td>Racial / Ethnic / National</td>
+                <td>25%</td>
+                <td>57%</td>
+                <td>32 pp</td>
+              </tr>
+              <tr class="bot3">
+                <td>Sexual Orientation</td>
+                <td>21%</td>
+                <td>55%</td>
+                <td>34 pp</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── Figures ── -->
+      <section class="section" id="figures">
+        <div class="section-header">
+          <span class="section-num">4</span>
+          <h2>Figures</h2>
+        </div>
+
+        <figure class="fig" id="fig-winrate">
+          <img src="figures/winrate_ranking.png"
+            alt="Horizontal bar chart: global win rates per category with 95% CI" />
+          <figcaption>
+            <span class="fig-num">Figure 1.</span>
+            <strong>Global win-rate ranking.</strong>
+            Horizontal bars show each category's win rate across all opponents; error bars represent 95%
+            Wilson confidence intervals. The dashed line marks the 50% fair-evaluator baseline.
+            Class/Occupation sits 16 pp above; Sexual Orientation sits 12 pp below.
+          </figcaption>
+        </figure>
+
+        <figure class="fig" id="fig-heatmap">
+          <img src="figures/matchup_heatmap.png" alt="9×9 heatmap of pairwise win probabilities" />
+          <figcaption>
+            <span class="fig-num">Figure 2.</span>
+            <strong>Head-to-head matchup heatmap.</strong>
+            Each cell (i, j) shows the probability that category i beats category j. Red = row dominates;
+            blue = row loses; white = 50/50. The dominance of Class/Occupation (top row) and weakness of
+            Sexual Orientation (bottom row) are visible across all opponents.
+          </figcaption>
+        </figure>
+
+        <figure class="fig" id="fig-position">
+          <img src="figures/position_bias.png"
+            alt="Grouped bar chart: win rates at position 1 vs. position 2 per category" />
+          <figcaption>
+            <span class="fig-num">Figure 3.</span>
+            <strong>Recency bias by category.</strong>
+            Paired bars show each category's win rate when placed first (dark) vs. second (light).
+            Dashed reference lines mark the global baselines (~35% pos. 1, ~65% pos. 2). Strong categories
+            shift both bars upward while preserving the gap.
+          </figcaption>
+        </figure>
+
+        <figure class="fig" id="fig-length">
+          <img src="figures/length_control.png" alt="Scatter plot and boxplot of joke length vs. win rate" />
+          <figcaption>
+            <span class="fig-num">Figure 4.</span>
+            <strong>Length as a confound.</strong>
+            <em>Left:</em> scatter of mean joke length (chars) against global win rate; regression line
+            (r ≈ −0.2, p &gt; 0.05). <em>Right:</em> length distributions per category (boxplots).
+            No meaningful association — length does not explain category performance.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Prev / Next -->
+      <div class="page-nav">
+        <a href="study.html">
+          Previous page
+          <strong>← Study Design</strong>
+        </a>
+        <a href="discussion.html" class="next">
+          Next page
+          <strong>Discussion →</strong>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <footer>
+    <p><strong>Does AI Have a Sense of Humor?</strong></p>
+    <p><span>Sciences Po Paris, EAP, Master 1</span>
+      <span class="sep">|</span>
+      <span>Decoding biases in Artificial Intelligence</span>
+      <span class="sep">|</span>
+      <span>April 2026</span>
+    </p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6">10,000 Reddit jokes · 36 matchups · ~80,000 pairwise
+      judgments · Claude Sonnet (Anthropic)</p>
+  </footer>
+
+  <script>
+    const tocLinks = document.querySelectorAll('.toc a');
+    const sections = document.querySelectorAll('.section[id], figure[id]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+
+</html>
