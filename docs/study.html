@@ -70,36 +70,69 @@
           <h2>Literature Review</h2>
         </div>
 
-        <div class="placeholder">
-          <span class="placeholder-icon">📚</span>
-          <strong>Placeholder — paste your literature review here</strong>
-          The three sub-sections below are ready to receive your content from the Google Doc.
-        </div>
-
         <h3 id="lit-llm">1.1 LLM Evaluation Bias</h3>
-        <div class="placeholder">
-          <strong>To be completed</strong>
-          Studies documenting verbosity bias, sycophancy, and positional bias in LLM-as-judge settings
-          (Wang et al. 2023; Zheng et al. 2023 — MT-Bench / Chatbot Arena; Pezeshkpour &amp; Hruschka 2023
-          on position effects in MCQ).
-        </div>
+        <p>
+          Using LLMs as judges of other texts has become standard practice since the release of MT-Bench and Chatbot
+          Arena, where Zheng et al. (2023) showed that GPT-4 judgments correlate well with human preferences at scale —
+          but also documented systematic failure modes. Chief among these is verbosity bias, where models tend to favour
+          longer, more elaborate outputs independent of their actual quality. A related issue is sycophancy, or the
+          tendency to reward outputs that align with cues in the prompt (such as the evaluator's stated identity) rather
+          than content. Pezeshkpour & Hruschka (2024) isolate a third distortion, positional bias: in pairwise tasks,
+          LLMs disproportionately favour whichever option appears first or last, regardless of content. Wang et al.
+          (2023) corroborate these findings, showing that LLM evaluators are not robust selectors even in simple
+          multiple-choice formats.
+        </p>
+        <p>
+          These biases are directly relevant to our experimental design. If an LLM judge systematically favours the
+          first joke it reads, any observed win-rate asymmetry across categories could be an artefact of presentation
+          order rather than genuine preference. Our three-round randomization protocol is designed specifically to
+          neutralise this confound. Each matchup is resolved by majority across three rounds in which joke positions
+          alternate, so that a positional preference cancels out.
+        </p>
 
         <h3 id="lit-social">1.2 Social Bias in Language Models</h3>
-        <div class="placeholder">
-          <strong>To be completed</strong>
-          Foundational work on stereotype encoding in word embeddings and large models (Bolukbasi et al. 2016;
-          Blodgett et al. 2020 survey; Bender et al. 2021 "Stochastic Parrots"). RLHF alignment and its
-          potential to amplify or suppress category-specific content (Ouyang et al. 2022; Bai et al. 2022
-          Constitutional AI).
-        </div>
+        <p>
+          The idea that language models encode social stereotypes has been documented since word-embedding methods were
+          first audited. Bolukbasi et al. (2016) showed that word2vec geometry encodes occupational gender stereotypes
+          directly into its vector space, and proposed linear debiasing as a correction; inaugurating a new research
+          direction and precipitating the production of works. Blodgett et al. (2020) surveyed the resulting literature
+          critically, arguing that much of it conflates distinct notions of bias, operationalizes harm inconsistently,
+          and rarely centres the communities most affected. Bender et al. (2021) extended the critique to large language
+          models specifically, warning that models trained on massive web corpora reflect the demographics and values of
+          who is most represented online. This concern directly applies to our Reddit-sourced joke corpus.
+        </p>
+        <p>
+          On the alignment side, Ouyang et al. (2022) showed that instruction fine-tuning with human feedback (RLHF)
+          substantially improves model behaviour on safety metrics; Bai et al. (2022) extended this with Constitutional
+          AI, in which a model critiques and revises its own outputs against a set of explicit principles. Crucially for
+          our purposes, these alignment interventions are not category-neutral: they may suppress content targeting
+          certain groups more aggressively than others, producing the asymmetric tolerance that our tournament is
+          designed to detect. Recent work confirms this directly. For instance, Mirowski et al. (2024) found that
+          safety-filtered LLMs erased minority perspectives in comedy writing contexts, and a large-scale audit
+          (Coppolillo et al., 2025) found that harmful outputs are rated as funnier by LLM judges, with role-prompted
+          models generating disproportionately more stereotypical content.
+        </p>
 
         <h3 id="lit-humor">1.3 Computational Humor</h3>
-        <div class="placeholder">
-          <strong>To be completed</strong>
-          NLP approaches to humor detection and preference (Mihalcea &amp; Strapparava 2005; Yang et al. 2015;
-          Hossain et al. 2020 SemEval-2020 Task 7). The "benign violation" theory of humor and its implications
-          for LLM evaluation (McGraw &amp; Warren 2010).
-        </div>
+        <p>
+          Automatic humor recognition has been studied since at least Mihalcea & Strapparava (2005), who framed it as a
+          one-class classification problem and showed that stylistic features —alliteration, antonymy, and adult slang—
+          are reliable signals. Yang et al. (2015) extended this with anchor extraction, identifying the specific words
+          or phrases that trigger the incongruity a joke depends on. The SemEval-2020 Task 7 (Hossain et al., 2020)
+          operationalized humor as a graded, comparative judgment by asking which of two edited news headlines is
+          funnier, making it the closest prior work to our pairwise tournament design.
+        </p>
+        <p>
+          The theoretical backbone for asking why something is funny, rather than merely whether it is, comes from
+          Benign Violation Theory (McGraw & Warren, 2010). The BVT holds that humor occurs when a situation is perceived
+          simultaneously as a violation (wrong, threatening, or norm-breaking) and as benign (safe or acceptable). The
+          theory predicts that the same joke will be perceived differently depending on the audience's social position
+          relative to the target group. Moreover, this variability in perceived benignness is exactly what alignment
+          training may have encoded asymmetrically into an LLM. Whether a racial joke, a gender joke, or a mental-health
+          joke strikes the model as "benign enough to be funny" is therefore not a neutral aesthetic question: it is a
+          normative one, and measuring it systematically is the animating purpose of this study.
+        </p>
+
       </section>
 
       <!-- ── Dataset ── -->
