@@ -30,7 +30,7 @@
   <!-- ── Hero ── -->
   <header class="hero">
     <div class="hero-inner">
-      <h1>Does AI Have a Sense of Humor?<br><em>Measuring Systematic Bias in LLM Joke Preferences</em></h1>
+      <h1>Funny or Not Funny? That is the prompt.<br><em>Measuring Systematic Bias in LLM Joke Preferences</em></h1>
       <div class="hero-meta">
         <span>Millán González-Bueno Aguirre, Zuzana Navratil, Alice Nguyen, Barthélemy Reboul, Mathias Setterblad</span>
       </div>
@@ -65,34 +65,29 @@
         </div>
         <p>
           Large language models are now routinely used as <em>evaluators</em>: they rank essays, summarise
-          conversations, score creative writing, and recommend content. Unlike generation tasks, evaluation
-          tasks expose the model's implicit <em>preferences</em> — which may encode biases that are invisible
+          conversations, score creative writing, or recommend content. Unlike generation tasks, evaluation
+          tasks expose the model's implicit <em>preferences</em>, which may encode biases that are invisible
           in standard benchmarks.
         </p>
         <p>
           Humor is a particularly revealing test case. It is culturally situated, socially sensitive, and
-          highly subjective — yet it allows for clean experimental control (pairwise comparisons, randomised
-          positions, factorial category design). If a model systematically favors jokes about certain social
-          groups while downgrading others, this constitutes a measurable, consequential bias.
+          highly subjective, but still allows for clean experimental control (pairwise comparisons, randomised
+          positions, factorial category design). If a model systematically favors jokes demeaning a certain social
+          groups while downgrading other categories of jokes, this constitutes a measurable, consequential bias.
         </p>
-        <div class="callout">
-          <p><strong>Central question:</strong> Does Claude exhibit systematic, category-level bias when
-            asked to evaluate the humor of jokes targeting different social groups? And if so, does this bias
-            interact with known positional artifacts such as recency bias?</p>
-        </div>
 
-        <h3>Hypotheses</h3>
+        <h3>Research questions</h3>
         <p>
-          <strong>H1 — Category bias.</strong> Win rates across the nine categories will differ significantly
-          from the 50% baseline expected under a fair evaluator (χ² test, Wilson 95% CIs).
+          <strong>RQ1 (Category bias).</strong> Does Claude show systematic preferences across joke categories, and if
+          so, which social groups does it favor or penalize?
         </p>
         <p>
-          <strong>H2 — Recency bias.</strong> The model will show a significant positional preference,
-          choosing the second-presented joke more often than the first across all matchups.
+          <strong>RQ2 (Position Effects).</strong> Does the order in which jokes are presented
+          influence the model's judgment, independently of content?
         </p>
         <p>
-          <strong>H3 — Interaction.</strong> Categories with strong inherent preference will resist the
-          recency disadvantage when placed in position 1, producing a detectable category × position interaction.
+          <strong>RQ3 (Interaction).</strong>Do category and position effects operate independently, or does a joke's
+          category modulate its susceptibility to positional bias?
         </p>
       </section>
 
