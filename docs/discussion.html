@@ -68,12 +68,16 @@
         </p>
         <p>
           The first explanation is structural. Class/Occupation humor tends to rely on wordplay, role reversals,
-          and incongruity between social expectation and professional reality. These are precisely the stylistic features
-          that Mihalcea &amp; Strapparava (2005) identified as reliable signals of funniness: alliteration, antonymy, and the formal markers of joke structure. Crucially,
-          this category's transgressiveness is typically low: making fun of an occupation or an activity does not implicate
+          and incongruity between social expectation and professional reality. These are precisely the stylistic
+          features
+          that Mihalcea &amp; Strapparava (2005) identified as reliable signals of funniness: alliteration, antonymy,
+          and the formal markers of joke structure. Crucially,
+          this category's transgressiveness is typically low: making fun of an occupation or an activity does not
+          implicate
           a protected characteristic in the way that racial or sexual-orientation humor does. According to Benign
           Violation Theory (McGraw &amp; Warren, 2010), humor arises at the intersection of a perceived violation
-          and benignness. In our case, the "benign" side of the equation is far easier to satisfy for occupational jokes than for jokes targeting
+          and benignness. In our case, the "benign" side of the equation is far easier to satisfy for occupational jokes
+          than for jokes targeting
           minority identities. The model, in effect, applies a lower harmfulness discount to this category, allowing
           the underlying comedic quality of the joke to pass through more cleanly.
         </p>
@@ -115,10 +119,12 @@
           minority perspectives in comedy writing, and with Coppolillo et al. (2025), who documented that LLM
           judges apply asymmetric standards across identity categories. The tension this creates is significant:
           a model deployed as a neutral evaluator of creative content cannot simultaneously be maximally safe
-          and maximally impartial. Safety alignment, by design, encodes a normative stance that eventually reflects in preference scores.
+          and maximally impartial. Safety alignment, by design, encodes a normative stance that eventually reflects in
+          preference scores.
         </p>
         <p>
-          Lastly, a further methodological factor may compound this effect. In our annotation procedure, Sexual Orientation
+          Lastly, a further methodological factor may compound this effect. In our annotation procedure, Sexual
+          Orientation
           was the most underrepresented category in the corpus, constituting only approximately 3% of annotated
           jokes. When Claude Haiku annotated the full dataset and our few-shot examples were weighted accordingly,
           the model may have inferred that Sexual Orientation humor represents a marginal, non-mainstream form of
@@ -143,7 +149,8 @@
           advantage whatever appears last.
         </p>
         <p>
-          Our design did not include "corrective" prompts precising that the order should not be considered as relevant for the evaluation.
+          Our design did not include "corrective" prompts precising that the order should not be considered as relevant
+          for the evaluation.
           This means our recency bias estimate is likely an upper bound on what would be observed in a more carefully
           engineered evaluation pipeline. But, the randomization process we implemented undoubtedly helped the protocol
           to converge towards an unbiased situation.
@@ -164,11 +171,15 @@
             <span class="icon">🤖</span>
             <div>
               <strong>Single model, single snapshot.</strong>
-              All judgments were made by Claude Haiku, a version specifically designed for the API. Results may not generalise to
+              All judgments were made by Claude Haiku, a version specifically designed for the API. Results may not
+              generalise to
               other LLMs (GPT-4o, Gemini, Llama 3) or to future releases of the same model after
-              further safety tuning. Similarly, large-scale category labels were produced by a version of Claude Sonnet, creating a circular dependency: the same
-              model family annotates <em>and</em> judges. This is likely to impact the relevance of the outcomes, even thought the API it is important to underscores that the API remains completly independent of the LLM.
-              The five human-annotated validation samples provide partial coverage only. Therefore, our results shall be only interprated at the light of
+              further safety tuning. Similarly, large-scale category labels were produced by a version of Claude Haiku,
+              creating a circular dependency: the same
+              model family annotates <em>and</em> judges. This is likely to impact the relevance of the outcomes, even
+              thought the API it is important to underscores that the API remains completly independent of the LLM.
+              The five human-annotated validation samples provide partial coverage only. Therefore, our results shall be
+              only interprated at the light of
               a specific and non-exhaustive framework, and shall not be extended to other models.
             </div>
           </li>
@@ -192,7 +203,8 @@ All judgments were elicited through a persona-framed prompt casting Claude
               <strong>Dataset scope and representativeness.</strong>
               The Reddit joke corpus skews toward English-language, culturally Western humor, produced
               by a non-representative internet population. Moreover, category proportions may not reflect
-              real-world distributions as internauts arguably do not behave and share content the same way online and offline.
+              real-world distributions as internauts arguably do not behave and share content the same way online and
+              offline.
             </div>
           </li>
 
@@ -261,7 +273,7 @@ All judgments were elicited through a persona-framed prompt casting Claude
   </div>
 
   <footer>
-    <p><strong>Does AI Have a Sense of Humor?</strong></p>
+    <p><strong>AI Bias in Humor</strong></p>
     <p><span>Sciences Po Paris, EAP, Master 1</span>
       <span class="sep">|</span>
       <span>Decoding biases in Artificial Intelligence</span>
