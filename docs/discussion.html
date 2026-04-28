@@ -59,26 +59,97 @@
           <h2>Discussion</h2>
         </div>
 
-        <div class="placeholder">
-          <span class="placeholder-icon">💬</span>
-          <strong>Placeholder — to be completed</strong>
-          This section will interpret the results in light of the three hypotheses and prior work.
-          Planned sub-sections:
-          <ul>
-            <li><strong>Why does Class/Occupation dominate?</strong> Hypothesis: this category often
-              relies on wordplay and structure (puns, reversals) rather than transgressive content,
-              making it safer for a safety-tuned model to reward. Alternatively, the training corpus
-              may over-represent this style.</li>
-            <li><strong>Why does Sexual Orientation lose?</strong> Hypothesis: safety alignment
-              (Constitutional AI, RLHF) suppresses content targeting LGBTQ+ groups — the model refuses
-              to "reward" it even in a comparative humor context. This represents a tension between
-              safety and evaluation neutrality.</li>
-            <li><strong>Recency bias as an attention artifact.</strong> Comparison with Zheng et al.
-              (2023); discussion of whether system-prompt priming or chain-of-thought could mitigate the effect.</li>
-            <li><strong>Implications for LLM-as-judge frameworks.</strong> Randomised position order
-              as a minimal mitigation; aggregation strategies; the case for multi-model juries.</li>
-          </ul>
-        </div>
+        <h3>Why does Class/Occupation dominate?</h3>
+        <p>
+          The most striking finding of this study is that Class/Occupation jokes win 66% of all pairwise
+          matchups: 16 percentage points above the fair-evaluator baseline. Two complementary mechanisms
+          plausibly explain this dominance, and disentangling them requires careful reflection on what
+          "funny" means in this context.
+        </p>
+        <p>
+          The first explanation is structural. Class/Occupation humor tends to rely on wordplay, role reversals,
+          and incongruity between social expectation and professional reality. These are precisely the stylistic features
+          that Mihalcea &amp; Strapparava (2005) identified as reliable signals of funniness: alliteration, antonymy, and the formal markers of joke structure. Crucially,
+          this category's transgressiveness is typically low: making fun of an occupation or an activity does not implicate
+          a protected characteristic in the way that racial or sexual-orientation humor does. According to Benign
+          Violation Theory (McGraw &amp; Warren, 2010), humor arises at the intersection of a perceived violation
+          and benignness. In our case, the "benign" side of the equation is far easier to satisfy for occupational jokes than for jokes targeting
+          minority identities. The model, in effect, applies a lower harmfulness discount to this category, allowing
+          the underlying comedic quality of the joke to pass through more cleanly.
+        </p>
+        <p>
+          The second explanation operates at the level of training data. Large language
+          models trained on web-scale datasets reflect the demographics and cultural production of those
+          most represented online. Workplace and class-based humor is arguably the most pervasive and socially
+          sanctioned form of comedy in Anglo-American internet culture, saturating memes, LinkedIn satire,
+          and subreddits alike. A model whose pretraining corpus is saturated with this style may have acquired a
+          structural affinity for its cadence and punchline logic. This hypothesis is harder to assess directly in a
+          black-box API setting, but it aligns with the broader concern raised by Blodgett et al. (2020) that LLMs
+          encode the preferences and blind spots of their training populations rather than offering neutral judgment.
+        </p>
+        <p>
+          Anthropic's own public documentation on Claude's character and values reinforces the first mechanism.
+          Constitutional AI is explicitly designed to make the model refuse or downgrade content perceived as
+          harmful, and the harm threshold is calibrated against characteristics protected under anti-discrimination
+          law, which does not include class or occupation. The result is a hierarchy of tolerance that was
+          designed for generation tasks but that is being shed the spotlight one during evaluation tasks.
+        </p>
+
+        <h3>Why does Sexual Orientation lose?</h3>
+        <p>
+          At the other end of the ranking, Sexual Orientation jokes win only 38% of matchups — the lowest of all
+          nine categories and right behind Racial/Ethnic. This outcome is the mirror image
+          of Class/Occupation's dominance and, we argue, flows from the same underlying cause: Anthropic's alignment
+          interventions are not category-neutral.
+        </p>
+        <p>
+          The practical consequence is
+          that a model asked to evaluate whether a joke is "funny" will implicitly route that judgment through a
+          harm filter. For Sexual Orientation content, the filter is seemingly particularly aggressive. Even in a
+          comparative context where the model is not being asked to generate harmful material but merely to assess
+          relative comedic quality, the suppression mechanism appears to activate. The model declines to "reward"
+          these jokes even in a framework that does not require it to endorse them.
+        </p>
+        <p>
+          This observation resonates with Mirowski et al. (2024), who found that safety-filtered LLMs erased
+          minority perspectives in comedy writing, and with Coppolillo et al. (2025), who documented that LLM
+          judges apply asymmetric standards across identity categories. The tension this creates is significant:
+          a model deployed as a neutral evaluator of creative content cannot simultaneously be maximally safe
+          and maximally impartial. Safety alignment, by design, encodes a normative stance that eventually reflects in preference scores.
+        </p>
+        <p>
+          Lastly, a further methodological factor may compound this effect. In our annotation procedure, Sexual Orientation
+          was the most underrepresented category in the corpus, constituting only approximately 3% of annotated
+          jokes. When Claude Haiku annotated the full dataset and our few-shot examples were weighted accordingly,
+          the model may have inferred that Sexual Orientation humor represents a marginal, non-mainstream form of
+          comedy. In the absence of strong positive training signal for this category, the safety-suppression
+          effect operates almost unchallenged. The annotation dependency identified in our limitations section
+          thus amplifies the very bias the experiment was designed to detect.
+        </p>
+
+        <h3>Recency bias as an attention artifact</h3>
+        <p>
+          The 65% position-2 preference we document is large, consistent, and present in every one of the 36
+          matchups. It replicates and extends the findings Pezeshkpour &amp;
+          Hruschka (2024), who showed that option order distorts LLM judgment in multiple-choice settings.
+        </p>
+        <p>
+          The most plausible mechanistic account is attentional: transformer architectures weight recent tokens
+          more heavily through the key-value attention mechanism, an effect sometimes called "lost in the middle"
+          (Liu et al., 2023). When two jokes are presented sequentially, the second joke occupies a more salient
+          position in the context window at the moment the model generates its verdict. This is not a deliberate
+          preference but a structural artifact of how attention is computed over long sequences. The implications
+          are non-trivial: any evaluation task in which option order is not counterbalanced will systematically
+          advantage whatever appears last.
+        </p>
+        <p>
+          Our design did not include "corrective" prompts precising that the order should not be considered as relevant for the evaluation.
+          This means our recency bias estimate is likely an upper bound on what would be observed in a more carefully
+          engineered evaluation pipeline. But, the randomization process we implemented undoubtedly helped the protocol
+          to converge towards an unbiased situation.
+        </p>
+
+
       </section>
 
       <!-- ── Limitations ── -->
@@ -95,45 +166,23 @@
               <strong>Single model, single snapshot.</strong>
               All judgments were made by one version of Claude Sonnet. Results may not generalise to
               other LLMs (GPT-4o, Gemini, Llama 3) or to future releases of the same model after
-              further safety tuning.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🏷️</span>
-            <div>
-              <strong>Annotation dependency.</strong>
-              Category labels were produced by Claude Haiku, creating a circular dependency: the same
+              further safety tuning. Similarly, category labels were produced by Claude Haiku, creating a circular dependency: the same
               model family annotates <em>and</em> judges. Label noise propagates into tournament results.
-              The five human-annotated validation samples provide partial coverage only.
+              The five human-annotated validation samples provide partial coverage only.  Therefore, our results shall be only interprated at the light of
+              a specific and non-exhaustive framework, and shall not be extended to other models.
             </div>
           </li>
+
           <li>
             <span class="icon">🌍</span>
             <div>
               <strong>Dataset scope and representativeness.</strong>
               The Reddit joke corpus skews toward English-language, culturally Western humor, produced
-              by a non-representative internet population. Category proportions may not reflect
-              real-world distributions.
+              by a non-representative internet population. Moreover, category proportions may not reflect
+              real-world distributions as internauts arguably do not behave and share content the same way online and offline.
             </div>
           </li>
-          <li>
-            <span class="icon">🎭</span>
-            <div>
-              <strong>"Funniness" is underdefined.</strong>
-              The prompt asked for the "funniest" joke without defining funniness. The model's judgments
-              may conflate humor, harmlessness, and other latent criteria shaped by RLHF rather than
-              reflecting pure humor perception.
-            </div>
-          </li>
-          <li>
-            <span class="icon">🔬</span>
-            <div>
-              <strong>No causal mechanism.</strong>
-              We observe systematic preferences but cannot directly attribute them to specific causes
-              (training data, RLHF reward model, Constitutional AI) without targeted ablations
-              unavailable in a black-box API setting.
-            </div>
-          </li>
+
           <li>
             <span class="icon">📊</span>
             <div>
@@ -166,8 +215,8 @@
         </p>
         <p>
           The practical implication is that LLM-based evaluators should not be deployed as neutral arbiters
-          of creative content without explicit bias auditing. Tournament-style experiments — cheap to run
-          at scale with modern batch APIs — offer a tractable framework for such audits. Future work should
+          of creative content without explicit bias auditing. Tournament-style experiments, cheap to run
+          at scale with modern batch APIs, offer a tractable framework for such audits. Future work should
           replicate these results across models and languages, investigate the safety-alignment origins of
           category biases, and explore debiasing strategies such as position shuffling, multi-model juries,
           and chain-of-thought elicitation.
