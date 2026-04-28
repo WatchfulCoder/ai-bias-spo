@@ -68,91 +68,116 @@
         </div>
 
         <p>
-          Global win rates vary substantially across categories (χ² = 1,247, df = 8, p &lt; 0.001),
-          rejecting the null hypothesis of a fair evaluator. The spread covers nearly 30 percentage
-          points between the strongest and weakest categories. Three categories win significantly more
-          than 50% (Class/Occupation, Religion, Political) and two win significantly less
-          (Sexual Orientation, Racial/Ethnic/National).
+          The central question of this study is whether Claude expresses humor preferences or not, that is to say, when
+          forced to
+          choose between two jokes, it selects each with equal probability regardless of which social group the humor
+          targets. Under this null hypothesis, every category would converge to a 50% win rate over a large enough
+          number of matchups.
         </p>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Category</th>
-                <th>Win Rate</th>
-                <th>95% CI</th>
-                <th>vs. 50%</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="top3">
-                <td class="rank">1</td>
-                <td>Class / Occupation</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:66px"></span>66%</td>
-                <td>[63 – 69]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="top3">
-                <td class="rank">2</td>
-                <td>Religion-based</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:58px"></span>58%</td>
-                <td>[55 – 61]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="top3">
-                <td class="rank">3</td>
-                <td>Political / Ideological</td>
-                <td class="bar-cell"><span class="bar bar-h" style="width:54px"></span>54%</td>
-                <td>[51 – 57]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr>
-                <td class="rank">4</td>
-                <td>Age-based</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:53px"></span>53%</td>
-                <td>[50 – 56]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr>
-                <td class="rank">5</td>
-                <td>Mental Health</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:51px"></span>51%</td>
-                <td>[48 – 54]</td>
-                <td><span class="sig">n.s.</span></td>
-              </tr>
-              <tr>
-                <td class="rank">6</td>
-                <td>Gender-based</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:49px"></span>49%</td>
-                <td>[46 – 52]</td>
-                <td><span class="sig">n.s.</span></td>
-              </tr>
-              <tr>
-                <td class="rank">7</td>
-                <td>Appearance / Physical</td>
-                <td class="bar-cell"><span class="bar bar-m" style="width:45px"></span>45%</td>
-                <td>[42 – 48]</td>
-                <td><span class="sig sig-strong">p &lt; .05</span></td>
-              </tr>
-              <tr class="bot3">
-                <td class="rank">8</td>
-                <td>Racial / Ethnic / National</td>
-                <td class="bar-cell"><span class="bar bar-l" style="width:41px"></span>41%</td>
-                <td>[38 – 44]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-              <tr class="bot3">
-                <td class="rank">9</td>
-                <td>Sexual Orientation</td>
-                <td class="bar-cell"><span class="bar bar-l" style="width:38px"></span>38%</td>
-                <td>[35 – 41]</td>
-                <td><span class="sig sig-strong">p &lt; .001</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p>
+          The data reject this decisively. A chi-squared goodness-of-fit test across the nine categories yields χ² =
+          1,247 (df = 8, p < 0.001), indicating that the distribution of win rates is far too uneven to be attributed to
+            chance. The practical magnitude of the effect is equally striking, since the spread between the strongest
+            and weakest category spans nearly 30 percentage points (from 66% for Class/Occupation down to 38% for Sexual
+            Orientation). </p>
+
+            <p>
+              The nine categories fall into three natural tiers. At the top, Class/Occupation (66%), Religion (58%), and
+              Political/Ideological (54%) all win significantly more often than the 50% baseline. These are categories
+              where the targets are either non-protected characteristics (one's job) or domains where some degree of
+              satire is broadly normalized in Western culture. In the middle, Age-based (53%) sits just above
+              significance while Mental Health (51%) and Gender-based (49%) straddle the baseline — neither strongly
+              favored nor strongly penalized. At the bottom, Appearance/Physical (45%), Racial/Ethnic/National (41%),
+              and Sexual Orientation (38%) all lose significantly more than they win. These are categories where the
+              humor targets identity characteristics that are both legally protected and sensitive in contemporary
+              discourse.
+            </p>
+
+            <p>
+              The 95% Wilson confidence intervals reported in the table confirm that these effects are not artifacts of
+              sampling: even at the lower bound of the top category's interval (63%) and the upper bound of the bottom
+              category's interval (41%), the gap remains substantial.
+            </p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Category</th>
+                    <th>Win Rate</th>
+                    <th>95% CI</th>
+                    <th>vs. 50%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="top3">
+                    <td class="rank">1</td>
+                    <td>Class / Occupation</td>
+                    <td class="bar-cell"><span class="bar bar-h" style="width:66px"></span>66%</td>
+                    <td>[63 – 69]</td>
+                    <td><span class="sig sig-strong">p &lt; .001</span></td>
+                  </tr>
+                  <tr class="top3">
+                    <td class="rank">2</td>
+                    <td>Religion-based</td>
+                    <td class="bar-cell"><span class="bar bar-h" style="width:58px"></span>58%</td>
+                    <td>[55 – 61]</td>
+                    <td><span class="sig sig-strong">p &lt; .001</span></td>
+                  </tr>
+                  <tr class="top3">
+                    <td class="rank">3</td>
+                    <td>Political / Ideological</td>
+                    <td class="bar-cell"><span class="bar bar-h" style="width:54px"></span>54%</td>
+                    <td>[51 – 57]</td>
+                    <td><span class="sig sig-strong">p &lt; .05</span></td>
+                  </tr>
+                  <tr>
+                    <td class="rank">4</td>
+                    <td>Age-based</td>
+                    <td class="bar-cell"><span class="bar bar-m" style="width:53px"></span>53%</td>
+                    <td>[50 – 56]</td>
+                    <td><span class="sig sig-strong">p &lt; .05</span></td>
+                  </tr>
+                  <tr>
+                    <td class="rank">5</td>
+                    <td>Mental Health</td>
+                    <td class="bar-cell"><span class="bar bar-m" style="width:51px"></span>51%</td>
+                    <td>[48 – 54]</td>
+                    <td><span class="sig">n.s.</span></td>
+                  </tr>
+                  <tr>
+                    <td class="rank">6</td>
+                    <td>Gender-based</td>
+                    <td class="bar-cell"><span class="bar bar-m" style="width:49px"></span>49%</td>
+                    <td>[46 – 52]</td>
+                    <td><span class="sig">n.s.</span></td>
+                  </tr>
+                  <tr>
+                    <td class="rank">7</td>
+                    <td>Appearance / Physical</td>
+                    <td class="bar-cell"><span class="bar bar-m" style="width:45px"></span>45%</td>
+                    <td>[42 – 48]</td>
+                    <td><span class="sig sig-strong">p &lt; .05</span></td>
+                  </tr>
+                  <tr class="bot3">
+                    <td class="rank">8</td>
+                    <td>Racial / Ethnic / National</td>
+                    <td class="bar-cell"><span class="bar bar-l" style="width:41px"></span>41%</td>
+                    <td>[38 – 44]</td>
+                    <td><span class="sig sig-strong">p &lt; .001</span></td>
+                  </tr>
+                  <tr class="bot3">
+                    <td class="rank">9</td>
+                    <td>Sexual Orientation</td>
+                    <td class="bar-cell"><span class="bar bar-l" style="width:38px"></span>38%</td>
+                    <td>[35 – 41]</td>
+                    <td><span class="sig sig-strong">p &lt; .001</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
       </section>
 
       <!-- ── Recency Bias ── -->
