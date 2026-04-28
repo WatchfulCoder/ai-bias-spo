@@ -608,13 +608,13 @@ tbody tr {
 }
 
 /* tbody tr:hover { background: var(--blue-light); } */
-tbody tr.top3 {
+/* tbody tr.top3 {
   background: #f0fdf4;
 }
 
 tbody tr.bot3 {
   background: #fff1f2;
-}
+} */
 
 .rank {
   color: var(--faint);
