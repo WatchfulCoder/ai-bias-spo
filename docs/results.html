@@ -188,22 +188,35 @@
         </div>
 
         <p>
-          Pooling all fights across categories, the model selects the second joke in 65.3% of cases
-          (binomial test: p &lt; 0.001, 95% CI [64.1 – 66.5]). This <em>recency bias</em> is consistent
-          with findings from the LLM-as-judge literature on position effects, where models tend to favor
-          recently read content due to the structure of attention in transformers.
+          Before interpreting category-level differences, it is essential to account for a second, independent source of
+          bias: the order in which the two jokes are presented to the model. In each fight, Claude receives joke A
+          followed by joke B and must choose one. If the model were order-neutral, each position would win approximately
+          50% of the time. If instead the model systematically favors whichever joke it read most recently (a pattern
+          known as recency bias) the second position would win at a rate well above 50%, independently of the jokes'
+          content.
         </p>
-        <p>
-          The effect is robust: it is present in every single one of the 36 matchups. Position-2 win rates
-          per category range from 55% (Sexual Orientation) to 79% (Class/Occupation).
-        </p>
+        <p>This is precisely what we observe. Pooling all fights across all 36 matchups, the model selects the joke in
+          position 2 in 65.3% of cases (binomial test against H₀ = 0.5: p < 0.001, 95% CI [64.1 – 66.5]). This is a
+            large effect: under a fair coin, you would expect to see a deviation this extreme essentially never over
+            80,000 trials. The recency bias is a dominant feature of the model's judgment behavior. Crucially, the
+            effect is universal: it appears in every single one of the 36 pairwise matchups without exception. No
+            category pairing produces a position-neutral result. This rules out the possibility that the bias is driven
+            by one or two unusual matchups. The magnitude does vary: position-2 win rates range from 55% (Sexual
+            Orientation) to 79% (Class/Occupation), but this variation is itself informative (see next section). One
+            important clarification: recency bias does not invalidate the category bias results. The tournament design
+            controls for position by running each matchup symmetrically in both directions, since every joke from
+            category A appears in position 1 against category B in the same proportion as it appears in position 2. The
+            global win rates reported above are therefore averaged across positions. Recency bias inflates or deflates
+            individual fight outcomes, but it cancels out at the level of the category ranking. What it does affect is
+            how much protection a category's inherent strength provides when it is placed at a positional disadvantage.
+            </p>
 
-        <div class="callout gold">
-          <p>
-            Even the category most resistant to recency bias (Class/Occupation) still shows a 25-point
-            gap between position 1 (54%) and position 2 (79%). No category reverses or neutralises the effect.
-          </p>
-        </div>
+            <div class="callout gold">
+              <p>
+                Even the category most resistant to recency bias (Class/Occupation) still shows a 25-point
+                gap between position 1 (54%) and position 2 (79%). No category reverses or neutralises the effect.
+              </p>
+            </div>
       </section>
 
       <!-- ── Interaction ── -->
@@ -214,94 +227,96 @@
         </div>
 
         <p>
-          The novel finding of this study is that <strong>category bias and recency bias interact</strong>.
-          Strong categories partially compensate for the positional handicap of being placed first.
+          The most theoretically interesting finding of this study emerges when category bias and recency bias are
+          examined jointly. If the two effects were fully independent, we would expect every category to suffer equally
+          from the positional handicap of being placed first: a 35% win rate across the board for position 1, regardless
+          of category. The data show that this is not the case.
         </p>
-
-        <div class="callout">
-          <p>
-            Class/Occupation in <strong>position 1</strong> (disadvantaged) still wins <strong>54%</strong>
-            of fights — well above the all-category average of 35% at position 1. Sexual Orientation in
-            the same position wins only <strong>21%</strong>. The difference (33 pp) is highly significant
-            (χ² test, p &lt; 0.001).
-          </p>
-        </div>
-
         <p>
-          This interaction suggests that the model holds a sufficiently strong a priori preference for
-          certain content types that it overrides the recency heuristic in a meaningful fraction of cases.
-          Conversely, weak categories are doubly penalized: they are both intrinsically less preferred
-          <em>and</em> receive no positional compensation.
-        </p>
+          Categories that score highly in the global ranking also perform significantly better than average when placed
+          in the disadvantaged first position. Class/Occupation, the strongest category overall, wins 54% of fights even
+          when placed first, nearly 20 percentage points above what the recency baseline would predict. Sexual
+          Orientation, the weakest category, wins only 21% from position 1, roughly 14 points below the baseline. The
+          difference between these two extremes (33 percentage points) is highly significant (χ² contingency test, p <
+            0.001). What this means is that the model's preference for certain categories is strong enough that it
+            partially overrides the recency bias. When the model is presented with a Class/Occupation joke first, it
+            chooses it at above-chance rates in spite of the pull toward the more recently read second option. When it
+            encounters a Sexual Orientation joke first, the category penalty compounds the positional penalty, and the
+            joke is almost never selected. The table below shows position-1 and position-2 win rates for all nine
+            categories. A pattern emerges clearly: the three columns (global win rate, position-1 win rate, and
+            position-2 win rate) are all monotonically aligned. A category's rank on the global scale predicts its rank
+            at each individual position. This consistency suggests that whatever mechanism drives the category ranking
+            operates independently of presentation order, simply shifting the entire win-rate distribution up or down.
+            </p>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Win rate at position 1</th>
-                <th>Win rate at position 2</th>
-                <th>Gap</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="top3">
-                <td>Class / Occupation</td>
-                <td>54%</td>
-                <td>79%</td>
-                <td>25 pp</td>
-              </tr>
-              <tr>
-                <td>Religion-based</td>
-                <td>42%</td>
-                <td>74%</td>
-                <td>32 pp</td>
-              </tr>
-              <tr>
-                <td>Age-based</td>
-                <td>38%</td>
-                <td>68%</td>
-                <td>30 pp</td>
-              </tr>
-              <tr>
-                <td>Gender-based</td>
-                <td>35%</td>
-                <td>63%</td>
-                <td>28 pp</td>
-              </tr>
-              <tr>
-                <td>Mental Health</td>
-                <td>34%</td>
-                <td>68%</td>
-                <td>34 pp</td>
-              </tr>
-              <tr>
-                <td>Appearance / Physical</td>
-                <td>30%</td>
-                <td>60%</td>
-                <td>30 pp</td>
-              </tr>
-              <tr>
-                <td>Political / Ideological</td>
-                <td>29%</td>
-                <td>66%</td>
-                <td>37 pp</td>
-              </tr>
-              <tr>
-                <td>Racial / Ethnic / National</td>
-                <td>25%</td>
-                <td>57%</td>
-                <td>32 pp</td>
-              </tr>
-              <tr class="bot3">
-                <td>Sexual Orientation</td>
-                <td>21%</td>
-                <td>55%</td>
-                <td>34 pp</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Win rate at position 1</th>
+                    <th>Win rate at position 2</th>
+                    <th>Gap</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="top3">
+                    <td>Class / Occupation</td>
+                    <td>54%</td>
+                    <td>79%</td>
+                    <td>25 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Religion-based</td>
+                    <td>42%</td>
+                    <td>74%</td>
+                    <td>32 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Age-based</td>
+                    <td>38%</td>
+                    <td>68%</td>
+                    <td>30 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Gender-based</td>
+                    <td>35%</td>
+                    <td>63%</td>
+                    <td>28 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Mental Health</td>
+                    <td>34%</td>
+                    <td>68%</td>
+                    <td>34 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Appearance / Physical</td>
+                    <td>30%</td>
+                    <td>60%</td>
+                    <td>30 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Political / Ideological</td>
+                    <td>29%</td>
+                    <td>66%</td>
+                    <td>37 pp</td>
+                  </tr>
+                  <tr>
+                    <td>Racial / Ethnic / National</td>
+                    <td>25%</td>
+                    <td>57%</td>
+                    <td>32 pp</td>
+                  </tr>
+                  <tr class="bot3">
+                    <td>Sexual Orientation</td>
+                    <td>21%</td>
+                    <td>55%</td>
+                    <td>34 pp</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
       </section>
 
       <!-- ── Figures ── -->
