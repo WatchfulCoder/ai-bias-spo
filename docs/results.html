@@ -1,463 +1,543 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Results — AI Bias in Humor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Results — AI Bias in Humor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <!-- ── Site nav ── -->
+    <nav class="site-nav">
+      <div class="site-nav-inner">
+        <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
+        <div class="site-nav-links">
+          <a href="index.html">Home</a>
+          <a href="study.html">Study Design</a>
+          <a href="results.html" class="active">Results</a>
+          <a href="discussion.html">Discussion</a>
+          <a href="references.html">References</a>
+        </div>
+      </div>
+    </nav>
 
-<body>
-
-  <!-- ── Site nav ── -->
-  <nav class="site-nav">
-    <div class="site-nav-inner">
-      <a class="site-nav-brand" href="index.html">AI Bias in Humor</a>
-      <div class="site-nav-links">
-        <a href="index.html">Home</a>
-        <a href="study.html">Study Design</a>
-        <a href="results.html" class="active">Results</a>
-        <a href="discussion.html">Discussion</a>
-        <a href="references.html">References</a>
+    <!-- ── Page header ── -->
+    <div class="page-header">
+      <div class="page-header-inner">
+        <div class="page-label">Page 3 of 4</div>
+        <h1>Results</h1>
       </div>
     </div>
-  </nav>
 
-  <!-- ── Page header ── -->
-  <div class="page-header">
-    <div class="page-header-inner">
-      <div class="page-label">Page 3 of 4</div>
-      <h1>Results</h1>
+    <!-- ── Two-column body ── -->
+    <div class="page-body">
+      <!-- Sidebar TOC -->
+      <aside class="toc">
+        <div class="toc-title">On this page</div>
+        <ol>
+          <li><a href="#res-category">1. Category Bias</a></li>
+          <li><a href="#res-position">2. Recency Bias</a></li>
+          <li><a href="#res-interaction">3. Interaction Effect</a></li>
+          <li>
+            <a href="#figures">4. Figures</a>
+            <ol class="toc-sub">
+              <li><a href="#fig-winrate">Fig. 1 — Win-rate ranking</a></li>
+              <li><a href="#fig-heatmap">Fig. 2 — Matchup heatmap</a></li>
+              <li><a href="#fig-position">Fig. 3 — Position bias</a></li>
+              <li><a href="#fig-length">Fig. 4 — Length control</a></li>
+            </ol>
+          </li>
+        </ol>
+        <a href="#" class="toc-top">↑ Back to top</a>
+      </aside>
+
+      <!-- Article -->
+      <article class="article">
+        <!-- ── Category Bias ── -->
+        <section class="section" id="res-category">
+          <div class="section-header">
+            <span class="section-num">1</span>
+            <h2>Category Bias</h2>
+          </div>
+
+          <p>
+            The central question of this study is whether Claude expresses humor
+            preferences or not, that is to say, when forced to choose between
+            two jokes, it selects each with equal probability regardless of
+            which social group the humor targets. Under this null hypothesis,
+            every category would converge to a 50% win rate over a large enough
+            number of matchups.
+          </p>
+
+          <p>
+            The data reject this decisively. A chi-squared goodness-of-fit test
+            across the nine categories yields χ² = 1,247 (df = 8, p < 0.001),
+            indicating that the distribution of win rates is far too uneven to
+            be attributed to chance. The practical magnitude of the effect is
+            equally striking, since the spread between the strongest and weakest
+            category spans nearly 30 percentage points (from 66% for
+            Class/Occupation down to 38% for Sexual Orientation).
+          </p>
+
+          <p>
+            The nine categories fall into three natural tiers. At the top,
+            Class/Occupation (66%), Religion (58%), and Political/Ideological
+            (54%) all win significantly more often than the 50% baseline. These
+            are categories where the targets are either non-protected
+            characteristics (one's job) or domains where some degree of satire
+            is broadly normalized in Western culture. In the middle, Age-based
+            (53%) sits just above significance while Mental Health (51%) and
+            Gender-based (49%) straddle the baseline — neither strongly favored
+            nor strongly penalized. At the bottom, Appearance/Physical (45%),
+            Racial/Ethnic/National (41%), and Sexual Orientation (38%) all lose
+            significantly more than they win. These are categories where the
+            humor targets identity characteristics that are both legally
+            protected and sensitive in contemporary discourse.
+          </p>
+
+          <p>
+            The 95% Wilson confidence intervals reported in the table confirm
+            that these effects are not artifacts of sampling: even at the lower
+            bound of the top category's interval (63%) and the upper bound of
+            the bottom category's interval (41%), the gap remains substantial.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Category</th>
+                  <th>Win Rate</th>
+                  <th>95% CI</th>
+                  <th>vs. 50%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="top3">
+                  <td class="rank">1</td>
+                  <td>Class / Occupation</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-h" style="width: 66px"></span>66%
+                  </td>
+                  <td>[63 – 69]</td>
+                  <td><span class="sig sig-strong">p &lt; .001</span></td>
+                </tr>
+                <tr class="top3">
+                  <td class="rank">2</td>
+                  <td>Religion-based</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-h" style="width: 58px"></span>58%
+                  </td>
+                  <td>[55 – 61]</td>
+                  <td><span class="sig sig-strong">p &lt; .001</span></td>
+                </tr>
+                <tr class="top3">
+                  <td class="rank">3</td>
+                  <td>Political / Ideological</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-h" style="width: 54px"></span>54%
+                  </td>
+                  <td>[51 – 57]</td>
+                  <td><span class="sig sig-strong">p &lt; .05</span></td>
+                </tr>
+                <tr>
+                  <td class="rank">4</td>
+                  <td>Age-based</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-m" style="width: 53px"></span>53%
+                  </td>
+                  <td>[50 – 56]</td>
+                  <td><span class="sig sig-strong">p &lt; .05</span></td>
+                </tr>
+                <tr>
+                  <td class="rank">5</td>
+                  <td>Mental Health</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-m" style="width: 51px"></span>51%
+                  </td>
+                  <td>[48 – 54]</td>
+                  <td><span class="sig">n.s.</span></td>
+                </tr>
+                <tr>
+                  <td class="rank">6</td>
+                  <td>Gender-based</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-m" style="width: 49px"></span>49%
+                  </td>
+                  <td>[46 – 52]</td>
+                  <td><span class="sig">n.s.</span></td>
+                </tr>
+                <tr>
+                  <td class="rank">7</td>
+                  <td>Appearance / Physical</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-m" style="width: 45px"></span>45%
+                  </td>
+                  <td>[42 – 48]</td>
+                  <td><span class="sig sig-strong">p &lt; .05</span></td>
+                </tr>
+                <tr class="bot3">
+                  <td class="rank">8</td>
+                  <td>Racial / Ethnic / National</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-l" style="width: 41px"></span>41%
+                  </td>
+                  <td>[38 – 44]</td>
+                  <td><span class="sig sig-strong">p &lt; .001</span></td>
+                </tr>
+                <tr class="bot3">
+                  <td class="rank">9</td>
+                  <td>Sexual Orientation</td>
+                  <td class="bar-cell">
+                    <span class="bar bar-l" style="width: 38px"></span>38%
+                  </td>
+                  <td>[35 – 41]</td>
+                  <td><span class="sig sig-strong">p &lt; .001</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── Recency Bias ── -->
+        <section class="section" id="res-position">
+          <div class="section-header">
+            <span class="section-num">2</span>
+            <h2>Recency Bias</h2>
+          </div>
+
+          <p>
+            Before interpreting category-level differences, it is essential to
+            account for a second, independent source of bias: the order in which
+            the two jokes are presented to the model. In each fight, Claude
+            receives joke A followed by joke B and must choose one. If the model
+            were order-neutral, each position would win approximately 50% of the
+            time. If instead the model systematically favors whichever joke it
+            read most recently (a pattern known as recency bias) the second
+            position would win at a rate well above 50%, independently of the
+            jokes' content.
+          </p>
+          <p>
+            This is precisely what we observe. Pooling all fights across all 36
+            matchups, the model selects the joke in position 2 in 65.3% of cases
+            (binomial test against H₀ = 0.5: p < 0.001, 95% CI [64.1 – 66.5]).
+            This is a large effect: under a fair coin, you would expect to see a
+            deviation this extreme essentially never over 80,000 trials. The
+            recency bias is a dominant feature of the model's judgment behavior.
+            Crucially, the effect is universal: it appears in every single one
+            of the 36 pairwise matchups without exception. No category pairing
+            produces a position-neutral result. This rules out the possibility
+            that the bias is driven by one or two unusual matchups. The
+            magnitude does vary: position-2 win rates range from 55% (Sexual
+            Orientation) to 79% (Class/Occupation), but this variation is itself
+            informative (see next section). One important clarification: recency
+            bias does not invalidate the category bias results. The tournament
+            design controls for position by running each matchup symmetrically
+            in both directions, since every joke from category A appears in
+            position 1 against category B in the same proportion as it appears
+            in position 2. The global win rates reported above are therefore
+            averaged across positions. Recency bias inflates or deflates
+            individual fight outcomes, but it cancels out at the level of the
+            category ranking. What it does affect is how much protection a
+            category's inherent strength provides when it is placed at a
+            positional disadvantage.
+          </p>
+
+          <div class="callout gold">
+            <p>
+              Even the category most resistant to recency bias
+              (Class/Occupation) still shows a 25-point gap between position 1
+              (54%) and position 2 (79%). No category reverses or neutralises
+              the effect.
+            </p>
+          </div>
+        </section>
+
+        <!-- ── Interaction ── -->
+        <section class="section" id="res-interaction">
+          <div class="section-header">
+            <span class="section-num">3</span>
+            <h2>Interaction Effect</h2>
+          </div>
+
+          <p>
+            The most theoretically interesting finding of this study emerges
+            when category bias and recency bias are examined jointly. If the two
+            effects were fully independent, we would expect every category to
+            suffer equally from the positional handicap of being placed first: a
+            35% win rate across the board for position 1, regardless of
+            category. The data show that this is not the case.
+          </p>
+          <p>
+            Categories that score highly in the global ranking also perform
+            significantly better than average when placed in the disadvantaged
+            first position. Class/Occupation, the strongest category overall,
+            wins 54% of fights even when placed first, nearly 20 percentage
+            points above what the recency baseline would predict. Sexual
+            Orientation, the weakest category, wins only 21% from position 1,
+            roughly 14 points below the baseline. The difference between these
+            two extremes (33 percentage points) is highly significant (χ²
+            contingency test, p < 0.001). What this means is that the model's
+            preference for certain categories is strong enough that it partially
+            overrides the recency bias. When the model is presented with a
+            Class/Occupation joke first, it chooses it at above-chance rates in
+            spite of the pull toward the more recently read second option. When
+            it encounters a Sexual Orientation joke first, the category penalty
+            compounds the positional penalty, and the joke is almost never
+            selected. The table below shows position-1 and position-2 win rates
+            for all nine categories. A pattern emerges clearly: the three
+            columns (global win rate, position-1 win rate, and position-2 win
+            rate) are all monotonically aligned. A category's rank on the global
+            scale predicts its rank at each individual position. This
+            consistency suggests that whatever mechanism drives the category
+            ranking operates independently of presentation order, simply
+            shifting the entire win-rate distribution up or down.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Win rate at position 1</th>
+                  <th>Win rate at position 2</th>
+                  <th>Gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="top3">
+                  <td>Class / Occupation</td>
+                  <td>54%</td>
+                  <td>79%</td>
+                  <td>25 pp</td>
+                </tr>
+                <tr>
+                  <td>Religion-based</td>
+                  <td>42%</td>
+                  <td>74%</td>
+                  <td>32 pp</td>
+                </tr>
+                <tr>
+                  <td>Age-based</td>
+                  <td>38%</td>
+                  <td>68%</td>
+                  <td>30 pp</td>
+                </tr>
+                <tr>
+                  <td>Gender-based</td>
+                  <td>35%</td>
+                  <td>63%</td>
+                  <td>28 pp</td>
+                </tr>
+                <tr>
+                  <td>Mental Health</td>
+                  <td>34%</td>
+                  <td>68%</td>
+                  <td>34 pp</td>
+                </tr>
+                <tr>
+                  <td>Appearance / Physical</td>
+                  <td>30%</td>
+                  <td>60%</td>
+                  <td>30 pp</td>
+                </tr>
+                <tr>
+                  <td>Political / Ideological</td>
+                  <td>29%</td>
+                  <td>66%</td>
+                  <td>37 pp</td>
+                </tr>
+                <tr>
+                  <td>Racial / Ethnic / National</td>
+                  <td>25%</td>
+                  <td>57%</td>
+                  <td>32 pp</td>
+                </tr>
+                <tr class="bot3">
+                  <td>Sexual Orientation</td>
+                  <td>21%</td>
+                  <td>55%</td>
+                  <td>34 pp</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ── Figures ── -->
+        <section class="section" id="figures">
+          <div class="section-header">
+            <span class="section-num">4</span>
+            <h2>Figures</h2>
+          </div>
+
+          <figure class="fig" id="fig-winrate">
+            <img
+              src="figures/winrate_ranking.png"
+              alt="Horizontal bar chart: global win rates per category with 95% CI"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 1.</span>
+              <strong>Global win-rate ranking.</strong>
+              Horizontal bars show each category's win rate across all
+              opponents; error bars represent 95% Wilson confidence intervals.
+              The dashed line marks the 50% fair-evaluator baseline.
+              Class/Occupation sits 16 pp above; Sexual Orientation sits 12 pp
+              below.
+            </figcaption>
+          </figure>
+
+          <figure class="fig" id="fig-heatmap">
+            <img
+              src="figures/matchup_heatmap.png"
+              alt="9×9 heatmap of pairwise win probabilities"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 2.</span>
+              <strong>Head-to-head matchup heatmap.</strong>
+              Each cell (i, j) shows the probability that category i beats
+              category j. Red = row dominates; blue = row loses; white = 50/50.
+              The dominance of Class/Occupation (top row) and weakness of Sexual
+              Orientation (bottom row) are visible across all opponents.
+            </figcaption>
+          </figure>
+
+          <figure class="fig" id="fig-position">
+            <img
+              src="figures/position_bias.png"
+              alt="Grouped bar chart: win rates at position 1 vs. position 2 per category"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 3.</span>
+              <strong>Recency bias by category.</strong>
+              Paired bars show each category's win rate when placed first (dark)
+              vs. second (light). Dashed reference lines mark the global
+              baselines (~35% pos. 1, ~65% pos. 2). Strong categories shift both
+              bars upward while preserving the gap.
+            </figcaption>
+          </figure>
+
+          <figure class="fig" id="fig-length">
+            <img
+              src="figures/length_control.png"
+              alt="Scatter plot and boxplot of joke length vs. win rate"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 4.</span>
+              <strong>Length as a confound.</strong>
+              <em>Left:</em> scatter of mean joke length (chars) against global
+              win rate; regression line (r ≈ −0.2, p &gt; 0.05).
+              <em>Right:</em> length distributions per category (boxplots). No
+              meaningful association — length does not explain category
+              performance.
+            </figcaption>
+          </figure>
+
+          <figure class="fig" id="fig-scatter">
+            <img
+              src="figures/joke_scatter.png"
+              alt="Strip plot of per-joke win rates by category, ordered from best to worst"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 5.</span>
+              <strong>Per-joke win rate distribution by category.</strong>
+              Each dot represents one joke's win rate across all its tournament
+              fights; the large filled circle marks the category mean and the
+              horizontal bar marks the median. Categories are ordered left to
+              right from highest to lowest mean win rate. Two features stand
+              out. First, the within-category variance is substantial: even in
+              the strongest category (Class/Occupation), many individual jokes
+              lose more than they win, and even in the weakest (Sexual
+              Orientation), some jokes win the majority of their fights. The
+              category effect is a distributional shift, not a ceiling or floor.
+              Second, the distributions overlap considerably across adjacent
+              categories — the gap between, say, Gender and Mental Health is not
+              a clean break but a gradual drift. This confirms that the category
+              ranking reflects a systematic tendency rather than a hard rule,
+              and that joke quality within each category varies widely
+              regardless of what group it targets.
+            </figcaption>
+          </figure>
+
+          <figure class="fig" id="fig-length-scatter">
+            <img
+              src="figures/length_winrate_scatter.png"
+              alt="Scatter plot of individual joke win rate against joke length in characters"
+            />
+            <figcaption>
+              <span class="fig-num">Figure 6.</span>
+              <strong
+                >Win rate versus joke length at the individual joke
+                level.</strong
+              >
+              Each dot is one joke, colored by category; the x-axis is capped at
+              the 99th percentile (1,540 characters) to reduce the influence of
+              extreme outliers. The dashed regression line reveals a moderate
+              but statistically significant positive association: longer jokes
+              tend to win more often (r = +0.351, p &lt; 0.001). This finding
+              requires careful interpretation. It does
+              <em>not</em> mean that length explains the category ranking — the
+              categories do not differ systematically in their average joke
+              length, so length cannot account for why Class/Occupation beats
+              Sexual Orientation. What it does suggest is that,
+              <em>within</em> any given category, longer jokes — which typically
+              contain more setup, more context, and a more developed punchline —
+              are judged funnier by the model.
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- Prev / Next -->
+        <div class="page-nav">
+          <a href="study.html">
+            Previous page
+            <strong>← Study Design</strong>
+          </a>
+          <a href="discussion.html" class="next">
+            Next page
+            <strong>Discussion →</strong>
+          </a>
+        </div>
+      </article>
     </div>
-  </div>
 
-  <!-- ── Two-column body ── -->
-  <div class="page-body">
+    <footer>
+      <p><strong>AI Bias in Humor</strong></p>
+      <p>
+        <span>Sciences Po Paris, EAP, Master 1</span>
+        <span class="sep">|</span>
+        <span>Decoding biases in Artificial Intelligence</span>
+        <span class="sep">|</span>
+        <span>April 2026</span>
+      </p>
+    </footer>
 
-    <!-- Sidebar TOC -->
-    <aside class="toc">
-      <div class="toc-title">On this page</div>
-      <ol>
-        <li><a href="#res-category">1. Category Bias</a></li>
-        <li><a href="#res-position">2. Recency Bias</a></li>
-        <li><a href="#res-interaction">3. Interaction Effect</a></li>
-        <li><a href="#figures">4. Figures</a>
-          <ol class="toc-sub">
-            <li><a href="#fig-winrate">Fig. 1 — Win-rate ranking</a></li>
-            <li><a href="#fig-heatmap">Fig. 2 — Matchup heatmap</a></li>
-            <li><a href="#fig-position">Fig. 3 — Position bias</a></li>
-            <li><a href="#fig-length">Fig. 4 — Length control</a></li>
-          </ol>
-        </li>
-      </ol>
-      <a href="#" class="toc-top">↑ Back to top</a>
-    </aside>
-
-    <!-- Article -->
-    <article class="article">
-
-      <!-- ── Category Bias ── -->
-      <section class="section" id="res-category">
-        <div class="section-header">
-          <span class="section-num">1</span>
-          <h2>Category Bias</h2>
-        </div>
-
-        <p>
-          The central question of this study is whether Claude expresses humor preferences or not, that is to say, when
-          forced to
-          choose between two jokes, it selects each with equal probability regardless of which social group the humor
-          targets. Under this null hypothesis, every category would converge to a 50% win rate over a large enough
-          number of matchups.
-        </p>
-
-        <p>
-          The data reject this decisively. A chi-squared goodness-of-fit test across the nine categories yields χ² =
-          1,247 (df = 8, p < 0.001), indicating that the distribution of win rates is far too uneven to be attributed to
-            chance. The practical magnitude of the effect is equally striking, since the spread between the strongest
-            and weakest category spans nearly 30 percentage points (from 66% for Class/Occupation down to 38% for Sexual
-            Orientation). </p>
-
-            <p>
-              The nine categories fall into three natural tiers. At the top, Class/Occupation (66%), Religion (58%), and
-              Political/Ideological (54%) all win significantly more often than the 50% baseline. These are categories
-              where the targets are either non-protected characteristics (one's job) or domains where some degree of
-              satire is broadly normalized in Western culture. In the middle, Age-based (53%) sits just above
-              significance while Mental Health (51%) and Gender-based (49%) straddle the baseline — neither strongly
-              favored nor strongly penalized. At the bottom, Appearance/Physical (45%), Racial/Ethnic/National (41%),
-              and Sexual Orientation (38%) all lose significantly more than they win. These are categories where the
-              humor targets identity characteristics that are both legally protected and sensitive in contemporary
-              discourse.
-            </p>
-
-            <p>
-              The 95% Wilson confidence intervals reported in the table confirm that these effects are not artifacts of
-              sampling: even at the lower bound of the top category's interval (63%) and the upper bound of the bottom
-              category's interval (41%), the gap remains substantial.
-            </p>
-
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Category</th>
-                    <th>Win Rate</th>
-                    <th>95% CI</th>
-                    <th>vs. 50%</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="top3">
-                    <td class="rank">1</td>
-                    <td>Class / Occupation</td>
-                    <td class="bar-cell"><span class="bar bar-h" style="width:66px"></span>66%</td>
-                    <td>[63 – 69]</td>
-                    <td><span class="sig sig-strong">p &lt; .001</span></td>
-                  </tr>
-                  <tr class="top3">
-                    <td class="rank">2</td>
-                    <td>Religion-based</td>
-                    <td class="bar-cell"><span class="bar bar-h" style="width:58px"></span>58%</td>
-                    <td>[55 – 61]</td>
-                    <td><span class="sig sig-strong">p &lt; .001</span></td>
-                  </tr>
-                  <tr class="top3">
-                    <td class="rank">3</td>
-                    <td>Political / Ideological</td>
-                    <td class="bar-cell"><span class="bar bar-h" style="width:54px"></span>54%</td>
-                    <td>[51 – 57]</td>
-                    <td><span class="sig sig-strong">p &lt; .05</span></td>
-                  </tr>
-                  <tr>
-                    <td class="rank">4</td>
-                    <td>Age-based</td>
-                    <td class="bar-cell"><span class="bar bar-m" style="width:53px"></span>53%</td>
-                    <td>[50 – 56]</td>
-                    <td><span class="sig sig-strong">p &lt; .05</span></td>
-                  </tr>
-                  <tr>
-                    <td class="rank">5</td>
-                    <td>Mental Health</td>
-                    <td class="bar-cell"><span class="bar bar-m" style="width:51px"></span>51%</td>
-                    <td>[48 – 54]</td>
-                    <td><span class="sig">n.s.</span></td>
-                  </tr>
-                  <tr>
-                    <td class="rank">6</td>
-                    <td>Gender-based</td>
-                    <td class="bar-cell"><span class="bar bar-m" style="width:49px"></span>49%</td>
-                    <td>[46 – 52]</td>
-                    <td><span class="sig">n.s.</span></td>
-                  </tr>
-                  <tr>
-                    <td class="rank">7</td>
-                    <td>Appearance / Physical</td>
-                    <td class="bar-cell"><span class="bar bar-m" style="width:45px"></span>45%</td>
-                    <td>[42 – 48]</td>
-                    <td><span class="sig sig-strong">p &lt; .05</span></td>
-                  </tr>
-                  <tr class="bot3">
-                    <td class="rank">8</td>
-                    <td>Racial / Ethnic / National</td>
-                    <td class="bar-cell"><span class="bar bar-l" style="width:41px"></span>41%</td>
-                    <td>[38 – 44]</td>
-                    <td><span class="sig sig-strong">p &lt; .001</span></td>
-                  </tr>
-                  <tr class="bot3">
-                    <td class="rank">9</td>
-                    <td>Sexual Orientation</td>
-                    <td class="bar-cell"><span class="bar bar-l" style="width:38px"></span>38%</td>
-                    <td>[35 – 41]</td>
-                    <td><span class="sig sig-strong">p &lt; .001</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-      </section>
-
-      <!-- ── Recency Bias ── -->
-      <section class="section" id="res-position">
-        <div class="section-header">
-          <span class="section-num">2</span>
-          <h2>Recency Bias</h2>
-        </div>
-
-        <p>
-          Before interpreting category-level differences, it is essential to account for a second, independent source of
-          bias: the order in which the two jokes are presented to the model. In each fight, Claude receives joke A
-          followed by joke B and must choose one. If the model were order-neutral, each position would win approximately
-          50% of the time. If instead the model systematically favors whichever joke it read most recently (a pattern
-          known as recency bias) the second position would win at a rate well above 50%, independently of the jokes'
-          content.
-        </p>
-        <p>This is precisely what we observe. Pooling all fights across all 36 matchups, the model selects the joke in
-          position 2 in 65.3% of cases (binomial test against H₀ = 0.5: p < 0.001, 95% CI [64.1 – 66.5]). This is a
-            large effect: under a fair coin, you would expect to see a deviation this extreme essentially never over
-            80,000 trials. The recency bias is a dominant feature of the model's judgment behavior. Crucially, the
-            effect is universal: it appears in every single one of the 36 pairwise matchups without exception. No
-            category pairing produces a position-neutral result. This rules out the possibility that the bias is driven
-            by one or two unusual matchups. The magnitude does vary: position-2 win rates range from 55% (Sexual
-            Orientation) to 79% (Class/Occupation), but this variation is itself informative (see next section). One
-            important clarification: recency bias does not invalidate the category bias results. The tournament design
-            controls for position by running each matchup symmetrically in both directions, since every joke from
-            category A appears in position 1 against category B in the same proportion as it appears in position 2. The
-            global win rates reported above are therefore averaged across positions. Recency bias inflates or deflates
-            individual fight outcomes, but it cancels out at the level of the category ranking. What it does affect is
-            how much protection a category's inherent strength provides when it is placed at a positional disadvantage.
-            </p>
-
-            <div class="callout gold">
-              <p>
-                Even the category most resistant to recency bias (Class/Occupation) still shows a 25-point
-                gap between position 1 (54%) and position 2 (79%). No category reverses or neutralises the effect.
-              </p>
-            </div>
-      </section>
-
-      <!-- ── Interaction ── -->
-      <section class="section" id="res-interaction">
-        <div class="section-header">
-          <span class="section-num">3</span>
-          <h2>Interaction Effect</h2>
-        </div>
-
-        <p>
-          The most theoretically interesting finding of this study emerges when category bias and recency bias are
-          examined jointly. If the two effects were fully independent, we would expect every category to suffer equally
-          from the positional handicap of being placed first: a 35% win rate across the board for position 1, regardless
-          of category. The data show that this is not the case.
-        </p>
-        <p>
-          Categories that score highly in the global ranking also perform significantly better than average when placed
-          in the disadvantaged first position. Class/Occupation, the strongest category overall, wins 54% of fights even
-          when placed first, nearly 20 percentage points above what the recency baseline would predict. Sexual
-          Orientation, the weakest category, wins only 21% from position 1, roughly 14 points below the baseline. The
-          difference between these two extremes (33 percentage points) is highly significant (χ² contingency test, p <
-            0.001). What this means is that the model's preference for certain categories is strong enough that it
-            partially overrides the recency bias. When the model is presented with a Class/Occupation joke first, it
-            chooses it at above-chance rates in spite of the pull toward the more recently read second option. When it
-            encounters a Sexual Orientation joke first, the category penalty compounds the positional penalty, and the
-            joke is almost never selected. The table below shows position-1 and position-2 win rates for all nine
-            categories. A pattern emerges clearly: the three columns (global win rate, position-1 win rate, and
-            position-2 win rate) are all monotonically aligned. A category's rank on the global scale predicts its rank
-            at each individual position. This consistency suggests that whatever mechanism drives the category ranking
-            operates independently of presentation order, simply shifting the entire win-rate distribution up or down.
-            </p>
-
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Category</th>
-                    <th>Win rate at position 1</th>
-                    <th>Win rate at position 2</th>
-                    <th>Gap</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="top3">
-                    <td>Class / Occupation</td>
-                    <td>54%</td>
-                    <td>79%</td>
-                    <td>25 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Religion-based</td>
-                    <td>42%</td>
-                    <td>74%</td>
-                    <td>32 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Age-based</td>
-                    <td>38%</td>
-                    <td>68%</td>
-                    <td>30 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Gender-based</td>
-                    <td>35%</td>
-                    <td>63%</td>
-                    <td>28 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Mental Health</td>
-                    <td>34%</td>
-                    <td>68%</td>
-                    <td>34 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Appearance / Physical</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                    <td>30 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Political / Ideological</td>
-                    <td>29%</td>
-                    <td>66%</td>
-                    <td>37 pp</td>
-                  </tr>
-                  <tr>
-                    <td>Racial / Ethnic / National</td>
-                    <td>25%</td>
-                    <td>57%</td>
-                    <td>32 pp</td>
-                  </tr>
-                  <tr class="bot3">
-                    <td>Sexual Orientation</td>
-                    <td>21%</td>
-                    <td>55%</td>
-                    <td>34 pp</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-      </section>
-
-      <!-- ── Figures ── -->
-      <section class="section" id="figures">
-        <div class="section-header">
-          <span class="section-num">4</span>
-          <h2>Figures</h2>
-        </div>
-
-        <figure class="fig" id="fig-winrate">
-          <img src="figures/winrate_ranking.png"
-            alt="Horizontal bar chart: global win rates per category with 95% CI" />
-          <figcaption>
-            <span class="fig-num">Figure 1.</span>
-            <strong>Global win-rate ranking.</strong>
-            Horizontal bars show each category's win rate across all opponents; error bars represent 95%
-            Wilson confidence intervals. The dashed line marks the 50% fair-evaluator baseline.
-            Class/Occupation sits 16 pp above; Sexual Orientation sits 12 pp below.
-          </figcaption>
-        </figure>
-
-        <figure class="fig" id="fig-heatmap">
-          <img src="figures/matchup_heatmap.png" alt="9×9 heatmap of pairwise win probabilities" />
-          <figcaption>
-            <span class="fig-num">Figure 2.</span>
-            <strong>Head-to-head matchup heatmap.</strong>
-            Each cell (i, j) shows the probability that category i beats category j. Red = row dominates;
-            blue = row loses; white = 50/50. The dominance of Class/Occupation (top row) and weakness of
-            Sexual Orientation (bottom row) are visible across all opponents.
-          </figcaption>
-        </figure>
-
-        <figure class="fig" id="fig-position">
-          <img src="figures/position_bias.png"
-            alt="Grouped bar chart: win rates at position 1 vs. position 2 per category" />
-          <figcaption>
-            <span class="fig-num">Figure 3.</span>
-            <strong>Recency bias by category.</strong>
-            Paired bars show each category's win rate when placed first (dark) vs. second (light).
-            Dashed reference lines mark the global baselines (~35% pos. 1, ~65% pos. 2). Strong categories
-            shift both bars upward while preserving the gap.
-          </figcaption>
-        </figure>
-
-        <figure class="fig" id="fig-length">
-          <img src="figures/length_control.png" alt="Scatter plot and boxplot of joke length vs. win rate" />
-          <figcaption>
-            <span class="fig-num">Figure 4.</span>
-            <strong>Length as a confound.</strong>
-            <em>Left:</em> scatter of mean joke length (chars) against global win rate; regression line
-            (r ≈ −0.2, p &gt; 0.05). <em>Right:</em> length distributions per category (boxplots).
-            No meaningful association — length does not explain category performance.
-          </figcaption>
-        </figure>
-
-        <figure class="fig" id="fig-scatter">
-          <img src="figures/joke_scatter.png"
-            alt="Strip plot of per-joke win rates by category, ordered from best to worst" />
-          <figcaption>
-            <span class="fig-num">Figure 5.</span>
-            <strong>Per-joke win rate distribution by category.</strong>
-            Each dot represents one joke's win rate across all its tournament fights;
-            the large filled circle marks the category mean and the horizontal bar marks
-            the median. Categories are ordered left to right from highest to lowest mean
-            win rate. Two features stand out. First, the within-category variance is
-            substantial: even in the strongest category (Class/Occupation), many individual
-            jokes lose more than they win, and even in the weakest (Sexual Orientation),
-            some jokes win the majority of their fights. The category effect is a
-            distributional shift, not a ceiling or floor. Second, the distributions
-            overlap considerably across adjacent categories — the gap between, say,
-            Gender and Mental Health is not a clean break but a gradual drift. This
-            confirms that the category ranking reflects a systematic tendency rather than
-            a hard rule, and that joke quality within each category varies widely
-            regardless of what group it targets.
-          </figcaption>
-        </figure>
-
-        <figure class="fig" id="fig-length-scatter">
-          <img src="figures/length_winrate_scatter.png"
-            alt="Scatter plot of individual joke win rate against joke length in characters" />
-          <figcaption>
-            <span class="fig-num">Figure 6.</span>
-            <strong>Win rate versus joke length at the individual joke level.</strong>
-            Each dot is one joke, colored by category; the x-axis is capped at the 99th
-            percentile (1,540 characters) to reduce the influence of extreme outliers.
-            The dashed regression line reveals a moderate but statistically significant
-            positive association: longer jokes tend to win more often (r = +0.351,
-            p &lt; 0.001). This finding requires careful interpretation. It does
-            <em>not</em> mean that length explains the category ranking — the categories
-            do not differ systematically in their average joke length, so length cannot
-            account for why Class/Occupation beats Sexual Orientation. What it does
-            suggest is that, <em>within</em> any given category, longer jokes — which
-            typically contain more setup, more context, and a more developed punchline —
-            are judged funnier by the model. This is a noteworthy secondary finding:
-            Claude may reward narrative elaboration independently of content, a tendency
-            that aligns with the verbosity bias documented in the LLM-as-judge literature
-            (Zheng et al., 2023).
-          </figcaption>
-        </figure>
-      </section>
-
-      <!-- Prev / Next -->
-      <div class="page-nav">
-        <a href="study.html">
-          Previous page
-          <strong>← Study Design</strong>
-        </a>
-        <a href="discussion.html" class="next">
-          Next page
-          <strong>Discussion →</strong>
-        </a>
-      </div>
-
-    </article>
-  </div>
-
-  <footer>
-    <p><strong>AI Bias in Humor</strong></p>
-    <p><span>Sciences Po Paris, EAP, Master 1</span>
-      <span class="sep">|</span>
-      <span>Decoding biases in Artificial Intelligence</span>
-      <span class="sep">|</span>
-      <span>April 2026</span>
-    </p>
-  </footer>
-
-  <script>
-    const tocLinks = document.querySelectorAll('.toc a');
-    const sections = document.querySelectorAll('.section[id], figure[id]');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          tocLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-15% 0px -70% 0px' });
-    sections.forEach(s => observer.observe(s));
-  </script>
-
-</body>
-
+    <script>
+      const tocLinks = document.querySelectorAll(".toc a");
+      const sections = document.querySelectorAll(".section[id], figure[id]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              tocLinks.forEach((l) => l.classList.remove("active"));
+              const active = document.querySelector(
+                `.toc a[href="#${entry.target.id}"]`,
+              );
+              if (active) active.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-15% 0px -70% 0px" },
+      );
+      sections.forEach((s) => observer.observe(s));
+    </script>
+  </body>
 </html>
