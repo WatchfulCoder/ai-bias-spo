@@ -32,7 +32,6 @@ K_OPPONENTS = 3
 N_ROUNDS = 3
 RANDOM_SEED = 42
 
-# These files were the result of the annotate.py script but were lost during the github push.
 TOURNAMENT_BATCH_ID_FILE = BASE / "tournament_batch_id.txt"
 TOURNAMENT_PAIRINGS_FILE = BASE / "tournament_pairings.json"
 TOURNAMENT_RESULTS_FILE = BASE / "tournament_results.json"
