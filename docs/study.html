@@ -418,23 +418,52 @@
 
           <h3 id="method-confound">3.2 Confound Control: Joke Length</h3>
           <p>
-            A natural confound is joke length: longer or more complex jokes may
-            win simply because they contain more content, not because of their
-            category. We compute mean and median character and word counts per
-            category, and regress win rate on length. No significant
-            relationship is found (r ≈ −0.2, p &gt; 0.05; Kruskal-Wallis across
-            categories: n.s.), ruling out length as an explanatory variable. The
-            full length-control figure is on the
+            A legitimate concern is that the results might not reflect category
+            preferences at all, but simply differences in joke length. Longer
+            jokes might win more often because they contain more setup, more
+            context, or simply more words for the model to process —
+            independently of which social group they target. If Class/Occupation
+            jokes happen to be longer on average than Sexual Orientation jokes,
+            their higher win rate could be explained by length rather than
+            category. To test this, we compute the mean and median character
+            count and word count for jokes in each category, and then ask
+            whether there is a statistical relationship between a category's
+            average length and its tournament win rate. The full length-control
+            figure is on the
             <a href="results.html#fig-length">Results page</a>.
           </p>
 
           <h3>Statistical tests</h3>
           <p>
-            Wilson 95% confidence intervals are computed for all win rates.
-            Significance against the 50% null is assessed with two-tailed
-            binomial tests. Per-matchup χ² tests assess distributional
-            differences. The category × position interaction is tested with a χ²
-            contingency table.
+            Several statistical measures appear throughout the Results section.
+            Win rate represents the proportion of fights a category won, the
+            baseline for a fair evaluator being 50%. Wilson 95% confidence
+            interval is a range around the win rate that explains how precise
+            the estimate is. A 95% CI of [63–69] means that, given the number of
+            fights observed, we are 95% confident the true win rate lies
+            somewhere between 63% and 69%. Narrow intervals mean the estimate is
+            reliable; wide intervals mean more data would be needed. Binomial
+            tests are used to check whether an observed win rate could plausibly
+            be the result of a fair coin. If a category wins 66% of 10,000
+            fights, the test calculates how likely it is that a perfectly fair
+            process (50/50) would produce a result this extreme by random
+            chance. When p is inferior to 0.001, it means that probability is
+            less than 0.1% — effectively impossible by chance alone. Chi-squared
+            test (χ²) are used to compare multiple categories at once rather
+            than testing each one individually. It produces a single number
+            summarizing how far the entire distribution of win rates is from
+            what one would expect if all categories were equal. The larger the
+            χ² value, the more the data deviates from the null. The degrees of
+            freedom (df) is a technical correction that accounts for how many
+            categories are being compared — here df = 8 because we have 9
+            categories and lose one degree of freedom from the constraint that
+            all win rates must be consistent with each other. The p-value then
+            converts that χ² number into a probability, using the same logic as
+            above. Pearson correlation (r) measures the strength and direction
+            of a linear relationship between two variables — here, between joke
+            length and win rate. It ranges from −1 (perfect negative
+            relationship) to +1 (perfect positive relationship), with 0 meaning
+            no relationship.
           </p>
         </section>
 
