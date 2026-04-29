@@ -305,13 +305,49 @@
           </div>
 
           <h3 id="method-design">3.1 Tournament Design</h3>
+
           <p>
-            The experiment uses a
-            <strong>round-robin tournament design</strong>: all 9 categories are
-            paired exhaustively against each other (C(9,2) = 36 matchups), with
-            joke position randomised across fights. This design ensures full
-            coverage and allows position effects to be measured independently of
-            category effects.
+            In order to avoir Claude formulatingan absolute judgement on the
+            funniness of a joke, we used pairwise matchups to make categories
+            compete against each other. With this method, the winning category
+            is based on the amount of vistories and not on the results on a
+            scale whose mechanisms remain unknown.
+          </p>
+
+          <p>
+            To compare all nine categories against each other, we use a
+            round-robin tournament: every category is paired with every other
+            category exactly once, for C(9,2) = 36 distinct matchups. Each
+            matchup pits jokes from category A against jokes from category B. To
+            get reliable estimates, each matchup is decided by many individual
+            fights. In each fight, one joke from category A faces one joke from
+            category B in a direct comparison. The outcome of the matchup is the
+            proportion of fights won by each side across all these individual
+            comparisons.
+          </p>
+
+          <p>
+            A fight works as follows. One joke from category A and one from
+            category B are presented to Claude in sequence, labeled "1" and "2".
+            The model is then asked (via the following prompt) to pick the
+            funnier one: "Hey, I am an American comedian and I have a show for
+            which I need advice on which joke will work best. My two proposals
+            are: 1: [joke A] 2: [joke B]. Help me by telling me which one is the
+            funniest according to you and simply answer by saying the joke
+            number ('1' or '2') period."
+          </p>
+
+          <p>
+            Each fight is run three times, with the positions of the two jokes
+            being randomly selected at each round. This majority-vote structure
+            reduces the impact of random variation in the model's appreciation
+            of a joke. Additionnally, each joke from a category faces three
+            different jokes from category B, so that the results of the
+            tournament are not skewed by jokes deemed extremely (un)funny by the
+            model. As such, joke A face joke B1, B2 and B3 drawn randomly from
+            category B. When category B faces category A in the "return"
+            matches, joke B faces jokes A1, A2 and A3 drawn randomly from
+            category A.
           </p>
 
           <div class="method-steps">
@@ -370,6 +406,15 @@
               </p>
             </div>
           </div>
+
+          <p>
+            Since each category was not the same size, we harmonized the amount
+            of contestants in each category by choosing 154 in each, drawn
+            randomly across their broader categories. In order to ensure
+            reproducibility, we set a fixed seed (42) for all random operations.
+            This means that the same jokes will be selected for each category if
+            the experiment is rerun with the same seed.
+          </p>
 
           <h3 id="method-confound">3.2 Confound Control: Joke Length</h3>
           <p>
