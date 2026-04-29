@@ -371,6 +371,51 @@
             No meaningful association — length does not explain category performance.
           </figcaption>
         </figure>
+
+        <figure class="fig" id="fig-scatter">
+          <img src="figures/joke_scatter.png"
+            alt="Strip plot of per-joke win rates by category, ordered from best to worst" />
+          <figcaption>
+            <span class="fig-num">Figure 5.</span>
+            <strong>Per-joke win rate distribution by category.</strong>
+            Each dot represents one joke's win rate across all its tournament fights;
+            the large filled circle marks the category mean and the horizontal bar marks
+            the median. Categories are ordered left to right from highest to lowest mean
+            win rate. Two features stand out. First, the within-category variance is
+            substantial: even in the strongest category (Class/Occupation), many individual
+            jokes lose more than they win, and even in the weakest (Sexual Orientation),
+            some jokes win the majority of their fights. The category effect is a
+            distributional shift, not a ceiling or floor. Second, the distributions
+            overlap considerably across adjacent categories — the gap between, say,
+            Gender and Mental Health is not a clean break but a gradual drift. This
+            confirms that the category ranking reflects a systematic tendency rather than
+            a hard rule, and that joke quality within each category varies widely
+            regardless of what group it targets.
+          </figcaption>
+        </figure>
+
+        <figure class="fig" id="fig-length-scatter">
+          <img src="figures/length_winrate_scatter.png"
+            alt="Scatter plot of individual joke win rate against joke length in characters" />
+          <figcaption>
+            <span class="fig-num">Figure 6.</span>
+            <strong>Win rate versus joke length at the individual joke level.</strong>
+            Each dot is one joke, colored by category; the x-axis is capped at the 99th
+            percentile (1,540 characters) to reduce the influence of extreme outliers.
+            The dashed regression line reveals a moderate but statistically significant
+            positive association: longer jokes tend to win more often (r = +0.351,
+            p &lt; 0.001). This finding requires careful interpretation. It does
+            <em>not</em> mean that length explains the category ranking — the categories
+            do not differ systematically in their average joke length, so length cannot
+            account for why Class/Occupation beats Sexual Orientation. What it does
+            suggest is that, <em>within</em> any given category, longer jokes — which
+            typically contain more setup, more context, and a more developed punchline —
+            are judged funnier by the model. This is a noteworthy secondary finding:
+            Claude may reward narrative elaboration independently of content, a tendency
+            that aligns with the verbosity bias documented in the LLM-as-judge literature
+            (Zheng et al., 2023).
+          </figcaption>
+        </figure>
       </section>
 
       <!-- Prev / Next -->
