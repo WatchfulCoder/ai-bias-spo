@@ -12,47 +12,35 @@ Usage: python3.11 visualize.py
 import json
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 import seaborn as sns
-from pathlib import Path
 from collections import defaultdict
-from scipy import stats
 
-BASE        = Path(__file__).parent
-FIGURES_DIR = BASE / "figures"
+from config import (
+    CATEGORY_PALETTE,
+    CATEGORY_SHORT_LABELS,
+    FIGURES_DIR,
+    POSITION_BIAS_RATES,
+    TOURNAMENT_RESULTS_FILE,
+)
+
 FIGURES_DIR.mkdir(exist_ok=True)
 
-with open(BASE / "tournament_results.json") as f:
+with open(TOURNAMENT_RESULTS_FILE) as f:
     results = json.load(f)
 
-# ── Palette ──────────────────────────────────────────────────────────────────
-PALETTE = {
-    "Class/Occupation":             "#2ecc71",
-    "Religion-based":               "#27ae60",
-    "Age-based":                    "#95a5a6",
-    "Gender-based":                 "#bdc3c7",
-    "Mental health":                "#e67e22",
-    "Political/Ideological":        "#e74c3c",
-    "Appearance/Physical condition":"#c0392b",
-    "Racial/Ethnic/National":       "#8e44ad",
-    "Sexual orientation":           "#6c3483",
-}
 
-SHORT = {
-    "Class/Occupation":             "Class/Occ.",
-    "Religion-based":               "Religion",
-    "Age-based":                    "Age",
-    "Gender-based":                 "Gender",
-    "Mental health":                "Mental health",
-    "Political/Ideological":        "Political",
-    "Appearance/Physical condition":"Appearance",
-    "Racial/Ethnic/National":       "Racial/Ethnic",
-    "Sexual orientation":           "Sexual orient.",
-}
+# Aggregate global win rates
+def wilson_ci(wins: int, total: int, z: float = 1.96) -> tuple[float, float]:
+    """Calculate a Wilson score confidence interval for a proportion.
 
+    Args:
+        wins: Number of successful outcomes.
+        total: Total number of trials.
+        z: Z-score for the desired confidence level.
 
-# ── Aggregate global win rates ────────────────────────────────────────────────
-def wilson_ci(wins, total, z=1.96):
+    Returns:
+        Lower and upper confidence interval bounds.
+    """
     if total == 0:
         return 0.0, 0.0
     p     = wins / total
@@ -82,13 +70,11 @@ for c in categories:
 errors = np.array(errors).T   # shape (2, n)
 
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# FIGURE 1 — Win-rate ranking bar chart
-# ═══════════════════════════════════════════════════════════════════════════════
+# Fig 1 — Win-rate ranking bar chart
 fig, ax = plt.subplots(figsize=(9, 5))
 
-colors = [PALETTE[c] for c in categories]
-labels = [SHORT[c] for c in categories]
+colors = [CATEGORY_PALETTE[c] for c in categories]
+labels = [CATEGORY_SHORT_LABELS[c] for c in categories]
 x      = np.arange(len(categories))
 
 bars = ax.bar(x, rates, color=colors, width=0.6, zorder=3)
@@ -120,9 +106,8 @@ plt.close()
 print("✓ figures/winrate_ranking.png")
 
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# FIGURE 2 — 9×9 heatmap
-# ═══════════════════════════════════════════════════════════════════════════════
+
+# Fig 2 — 9×9 heatmap
 
 # Order rows/cols by global win rate (best first)
 ordered = categories   # already sorted above
@@ -159,7 +144,7 @@ sns.heatmap(
     cbar_kws={"label": "Win rate (row beats column)", "shrink": 0.8},
 )
 
-short_labels = [SHORT[c] for c in ordered]
+short_labels = [CATEGORY_SHORT_LABELS[c] for c in ordered]
 ax.set_xticklabels(short_labels, rotation=40, ha="right", fontsize=9)
 ax.set_yticklabels(short_labels, rotation=0, fontsize=9)
 ax.set_title("Head-to-head win rates between joke categories\n"
@@ -176,24 +161,11 @@ print("✓ figures/matchup_heatmap.png")
 # FIGURE 3 — Position bias per category
 # ═══════════════════════════════════════════════════════════════════════════════
 
-# Data from analysis.py output
-pos_data = {
-    "Age-based":                    (0.369, 0.689),
-    "Appearance/Physical condition":(0.283, 0.620),
-    "Class/Occupation":             (0.537, 0.786),
-    "Gender-based":                 (0.348, 0.656),
-    "Mental health":                (0.314, 0.646),
-    "Political/Ideological":        (0.332, 0.603),
-    "Racial/Ethnic/National":       (0.248, 0.530),
-    "Religion-based":               (0.481, 0.757),
-    "Sexual orientation":           (0.208, 0.554),
-}
-
 # Sort by global win rate to keep consistent ordering
 pos_cats  = categories   # same order as figure 1
-pos1_vals = [pos_data[c][0] for c in pos_cats]
-pos2_vals = [pos_data[c][1] for c in pos_cats]
-short_pos = [SHORT[c] for c in pos_cats]
+pos1_vals = [POSITION_BIAS_RATES[c][0] for c in pos_cats]
+pos2_vals = [POSITION_BIAS_RATES[c][1] for c in pos_cats]
+short_pos = [CATEGORY_SHORT_LABELS[c] for c in pos_cats]
 
 x    = np.arange(len(pos_cats))
 w    = 0.35

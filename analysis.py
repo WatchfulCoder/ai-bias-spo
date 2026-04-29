@@ -1,33 +1,28 @@
-"""
-Statistical analysis of tournament results.
-
-Part 1 — Chi-squared tests + global win rates (uses tournament_results.json)
-Part 2 — Position bias analysis (re-streams raw batch results from API)
-
-Usage: python analysis.py
-"""
-
-import os
 import json
 import anthropic
 import numpy as np
-from pathlib import Path
 from collections import defaultdict
 from scipy import stats
 
-BASE          = Path(__file__).parent
-API_KEY       = os.environ.get("ANTHROPIC_API_KEY", "")
-RESULTS_FILE  = BASE / "tournament_results.json"
-PAIRINGS_FILE = BASE / "tournament_pairings.json"
-BATCH_ID_FILE = BASE / "tournament_batch_id.txt"
+from config import (
+    API_KEY,
+    TOURNAMENT_BATCH_ID_FILE,
+    TOURNAMENT_PAIRINGS_FILE,
+    TOURNAMENT_RESULTS_FILE,
+)
 
 
-# ─────────────────────────────────────────────
-# HELPERS
-# ─────────────────────────────────────────────
+def wilson_ci(wins: int, total: int, z: float = 1.96) -> tuple[float, float]:
+    """Calculate a Wilson score confidence interval for a proportion.
 
-def wilson_ci(wins, total, z=1.96):
-    """Wilson score 95% confidence interval for a proportion."""
+    Args:
+        wins: Number of successful outcomes.
+        total: Total number of trials.
+        z: Z-score for the desired confidence level.
+
+    Returns:
+        Lower and upper confidence interval bounds.
+    """
     if total == 0:
         return 0.0, 0.0
     p = wins / total
@@ -36,19 +31,28 @@ def wilson_ci(wins, total, z=1.96):
     margin = z * np.sqrt(p * (1 - p) / total + z**2 / (4 * total**2)) / denom
     return centre - margin, centre + margin
 
-def sig_stars(p):
+def sig_stars(p: float) -> str:
+    """Format a p-value as significance stars.
+
+    Args:
+        p: P-value to summarize.
+
+    Returns:
+        A significance label such as "***", "**", "*", or "ns".
+    """
     if p < 0.001: return "***"
     if p < 0.01:  return "**"
     if p < 0.05:  return "*"
     return "ns"
 
 
-# ─────────────────────────────────────────────
-# PART 1 — GLOBAL WIN RATES + CHI-SQUARED
-# ─────────────────────────────────────────────
+def run_stats() -> None:
+    """Print global and per-matchup tournament statistics.
 
-def run_stats():
-    with open(RESULTS_FILE) as f:
+    Returns:
+        None.
+    """
+    with open(TOURNAMENT_RESULTS_FILE) as f:
         results = json.load(f)
 
     # Aggregate wins and fights per category across all matchups
@@ -63,7 +67,7 @@ def run_stats():
             cat_wins[cat]  += v["wins"]
             cat_total[cat] += total   # each fight counts once per side
 
-    # ── Global ranking ──
+    #Global ranking
     print("=" * 65)
     print("GLOBAL WIN RATES (binomial test vs H0: win_rate = 0.50)")
     print("=" * 65)
@@ -76,7 +80,7 @@ def run_stats():
         p = stats.binomtest(w, t, p=0.5).pvalue
         print(f"  {rank}. {cat:<35} {rate:.3f}  [{lo:.3f}–{hi:.3f}]  p={p:.2e} {sig_stars(p)}")
 
-    # ── Per-matchup chi-squared ──
+    #Per-matchup chi-squared
     print()
     print("=" * 65)
     print("CHI-SQUARED PER MATCHUP  (H0: 50/50 split)")
@@ -95,21 +99,22 @@ def run_stats():
         )
 
 
-# ─────────────────────────────────────────────
-# PART 2 — POSITION BIAS
-# ─────────────────────────────────────────────
+def run_position_bias() -> None:
+    """Stream batch results and print position-bias statistics.
 
-def run_position_bias():
-    if not BATCH_ID_FILE.exists():
+    Returns:
+        None.
+    """
+    if not TOURNAMENT_BATCH_ID_FILE.exists():
         print("No batch ID found — skipping position bias.")
         return
 
-    with open(PAIRINGS_FILE) as f:
+    with open(TOURNAMENT_PAIRINGS_FILE) as f:
         pairings = json.load(f)
     pairing_map = {p["id"]: p for p in pairings}
 
     client   = anthropic.Anthropic(api_key=API_KEY)
-    batch_id = BATCH_ID_FILE.read_text().strip()
+    batch_id = TOURNAMENT_BATCH_ID_FILE.read_text().strip()
 
     # Counters
     chose_1 = chose_2 = errors = skipped = 0
@@ -149,7 +154,7 @@ def run_position_bias():
 
     total_rounds = chose_1 + chose_2
 
-    # ── Overall position bias ──
+    #Overall position bias
     print()
     print("=" * 65)
     print("OVERALL POSITION BIAS")
@@ -160,7 +165,7 @@ def run_position_bias():
     print(f"  Binomial test    : p = {p_binom:.4f}  {sig_stars(p_binom)}")
     print(f"  (errors={errors}, non-1/2 responses={skipped})")
 
-    # ── Per-category position effect ──
+    #Per-category position effect
     print()
     print("=" * 65)
     print("POSITION EFFECT PER CATEGORY")
@@ -182,10 +187,6 @@ def run_position_bias():
             f"  Δ={diff:+.3f}  p={p:.2e} {sig_stars(p)}"
         )
 
-
-# ─────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────
 
 if __name__ == "__main__":
     run_stats()

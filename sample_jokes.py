@@ -1,7 +1,9 @@
 import pandas as pd
 
+from config import JOKES_FILE, N_SAMPLE_FILES, SAMPLE_COLUMNS, SAMPLE_SIZE
+
 df = pd.read_csv(
-    "jokes.tsv",
+    JOKES_FILE,
     sep="\t",
     header=None,
     names=["score", "joke"],
@@ -12,11 +14,9 @@ df = pd.read_csv(
 # Drop empty jokes and duplicates
 df = df.dropna(subset=["joke"]).drop_duplicates(subset=["joke"])
 
-COLUMNS = ["joke", "category_human", "category_llm"]
-
-for i in range(1, 6):
-    sample = df.sample(n=100, random_state=i)[["joke"]].reset_index(drop=True)
+for i in range(1, N_SAMPLE_FILES + 1):
+    sample = df.sample(n=SAMPLE_SIZE, random_state=i)[["joke"]].reset_index(drop=True)
     sample.index += 1
     sample[["category_human", "category_llm"]] = ""
-    sample[COLUMNS].to_csv(f"sample_{i}.csv", index_label="id")
+    sample[SAMPLE_COLUMNS].to_csv(JOKES_FILE.parent / f"sample_{i}.csv", index_label="id")
     print(f"Sample {i} saved ({len(sample)} jokes)")

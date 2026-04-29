@@ -7,23 +7,21 @@ Usage:
     Step 3  Retrieve results: python batch_annotate.py retrieve
 """
 
-import os
 import sys
-import json
 import anthropic
 import pandas as pd
-from pathlib import Path
+from typing import Any
 
-
-# CONFIGURATION
-
-
-BASE        = Path(__file__).parent
-API_KEY     = os.environ.get("ANTHROPIC_API_KEY", "")
-MODEL       = "claude-haiku-4-5"
-N_JOKES     = 10000
-BATCH_ID_FILE = BASE / "batch_id.txt"
-RESULTS_FILE  = BASE / "annotated_10k.csv"
+from config import (
+    ANNOTATED_JOKES_FILE,
+    ANNOTATION_BATCH_ID_FILE,
+    API_KEY,
+    JOKES_10K_FILE,
+    JOKES_FILE,
+    MODEL,
+    N_JOKES,
+    N_SAMPLE_FILES,
+)
 
 
 # SYSTEM PROMPT
@@ -89,7 +87,14 @@ FEW_SHOT_EXAMPLES = [
 ]
 
 def build_user_message(joke: str) -> str:
-    """Build the full user message with few-shot examples + joke to classify."""
+    """Build the classification prompt for a joke.
+
+    Args:
+        joke: Joke text to classify.
+
+    Returns:
+        The user message containing few-shot examples and the target joke.
+    """
     lines = []
     for ex in FEW_SHOT_EXAMPLES:
         lines.append(f'Joke: "{ex["joke"]}"\nCategory: {ex["category"]}')
@@ -102,9 +107,13 @@ def build_user_message(joke: str) -> str:
 
 
 def load_jokes() -> pd.DataFrame:
-    """Load full dataset and exclude the 500 already-annotated jokes."""
+    """Load and sample jokes that have not already been annotated.
+
+    Returns:
+        A dataframe containing the sampled jokes for batch annotation.
+    """
     full = pd.read_csv(
-        BASE / "jokes.tsv",
+        JOKES_FILE,
         sep="\t",
         header=None,
         names=["score", "joke"],
@@ -113,8 +122,8 @@ def load_jokes() -> pd.DataFrame:
     ).dropna(subset=["joke"]).drop_duplicates(subset=["joke"])
 
     already_sampled = set()
-    for i in range(1, 6):
-        df = pd.read_csv(BASE / f"sample_{i}.csv")
+    for i in range(1, N_SAMPLE_FILES + 1):
+        df = pd.read_csv(JOKES_FILE.parent / f"sample_{i}.csv")
         already_sampled.update(df["joke"].tolist())
 
     remaining = full[~full["joke"].isin(already_sampled)]
@@ -127,11 +136,18 @@ def load_jokes() -> pd.DataFrame:
 # STEP 2: SUBMIT BATCH
 
 
-def submit(jokes: pd.DataFrame):
-    """Build and submit the batch to Anthropic."""
+def submit(jokes: pd.DataFrame) -> None:
+    """Build and submit a joke annotation batch to Anthropic.
+
+    Args:
+        jokes: Dataframe of jokes to classify.
+
+    Returns:
+        None.
+    """
     client = anthropic.Anthropic(api_key=API_KEY)
 
-    requests = []
+    requests: list[dict[str, Any]] = []
     for idx, row in jokes.iterrows():
         requests.append({
             "custom_id": f"joke_{idx}",
@@ -151,10 +167,10 @@ def submit(jokes: pd.DataFrame):
         betas=["message-batches-2024-09-24"],
     )
 
-    BATCH_ID_FILE.write_text(batch.id)
-    jokes.to_csv(BASE / "jokes_10k.csv", index_label="id")
+    ANNOTATION_BATCH_ID_FILE.write_text(batch.id)
+    jokes.to_csv(JOKES_10K_FILE, index_label="id")
     print(f"Batch submitted. ID: {batch.id}")
-    print(f"Batch ID saved to {BATCH_ID_FILE}")
+    print(f"Batch ID saved to {ANNOTATION_BATCH_ID_FILE}")
     print(f"Jokes saved to jokes_10k.csv")
     print(f"Status: {batch.processing_status}")
 
@@ -163,14 +179,18 @@ def submit(jokes: pd.DataFrame):
 # STEP 3: CHECK STATUS
 
 
-def status():
-    """Check the processing status of the batch."""
-    if not BATCH_ID_FILE.exists():
+def status() -> None:
+    """Check the processing status of the annotation batch.
+
+    Returns:
+        None.
+    """
+    if not ANNOTATION_BATCH_ID_FILE.exists():
         print("No batch ID found. Run 'submit' first.")
         return
 
     client = anthropic.Anthropic(api_key=API_KEY)
-    batch_id = BATCH_ID_FILE.read_text().strip()
+    batch_id = ANNOTATION_BATCH_ID_FILE.read_text().strip()
     batch = client.beta.messages.batches.retrieve(
         batch_id,
         betas=["message-batches-2024-09-24"],
@@ -187,14 +207,18 @@ def status():
 # STEP 4: RETRIEVE & SAVE RESULTS
 
 
-def retrieve():
-    """Download results and merge with jokes into a CSV."""
-    if not BATCH_ID_FILE.exists():
+def retrieve() -> None:
+    """Download annotation results and merge them into a CSV.
+
+    Returns:
+        None.
+    """
+    if not ANNOTATION_BATCH_ID_FILE.exists():
         print("No batch ID found. Run 'submit' first.")
         return
 
     client = anthropic.Anthropic(api_key=API_KEY)
-    batch_id = BATCH_ID_FILE.read_text().strip()
+    batch_id = ANNOTATION_BATCH_ID_FILE.read_text().strip()
     batch = client.beta.messages.batches.retrieve(
         batch_id,
         betas=["message-batches-2024-09-24"],
@@ -204,7 +228,7 @@ def retrieve():
         print(f"Batch not ready yet. Status: {batch.processing_status}")
         return
 
-    jokes = pd.read_csv(BASE / "jokes_10k.csv", index_col="id")
+    jokes = pd.read_csv(JOKES_10K_FILE, index_col="id")
     jokes["category_llm"] = None
 
     print("Downloading results...")
@@ -219,10 +243,10 @@ def retrieve():
         else:
             jokes.at[idx, "category_llm"] = "ERROR"
 
-    jokes.to_csv(RESULTS_FILE, index_label="id")
+    jokes.to_csv(ANNOTATED_JOKES_FILE, index_label="id")
     success = (jokes["category_llm"] != "ERROR").sum()
     print(f"Done. {success}/{len(jokes)} jokes annotated.")
-    print(f"Results saved to {RESULTS_FILE}")
+    print(f"Results saved to {ANNOTATED_JOKES_FILE}")
 
 
 

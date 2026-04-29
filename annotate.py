@@ -1,7 +1,6 @@
 import pandas as pd
-from pathlib import Path
 
-BASE = Path(__file__).parent
+from config import BASE, N_SAMPLE_FILES
 
 annotations = {
     1: {
@@ -116,7 +115,7 @@ annotations = {
     },
 }
 
-for i in range(1, 6):
+for i in range(1, N_SAMPLE_FILES + 1):
     path = BASE / f"sample_{i}.csv"
     df = pd.read_csv(path, index_col="id")
     df["category_llm"] = df.index.map(annotations[i])
